@@ -1,0 +1,12 @@
+Servidor (profit colgado,reiniciar el servidor)
+Profit(profit colgado, errores del profit, reiniciar el servidor)
+Validacion en el profit (existencias)
+Cámaras (ivms4200)
+Captahuellas (ivms4200)
+Ups (verificar y sustituir la bateria o el equipo )
+Impresoras (tonner recarga, cambio de  tonner) 
+Telèfonos mòviles (whatsApp, Google accounts, local storage, backups)
+Red ("No hay internet",no hay connecction, cambio de proveedor de internet)
+compras de equipos
+ftp (facturas que no han subido)
+cobian(backup)

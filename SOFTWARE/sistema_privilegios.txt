@@ -1,0 +1,45 @@
+Sistemas de Roles y privilegios. 
+	
+ - Super:	
+	* Todo
+	
+ - Supervisor Almacen:
+	* Registrar cuenta sistema (Habilitar acceso al sistema, teniendo en cuenta los privilegios asignados)
+	* Registrar ruta
+|	* Registrar empleado
+	* Estadisticas
+	* Pedidos por fecha
+        * Pedidos por despachador
+        * Fallas por despachador
+        
+ - Rechequeador:
+	* Enlazar pedido como rechequeador
+	* Registrar fallas
+        * Eliminar fallas
+ 
+ - Supervisor Inventario:
+        * Registrar cuenta sistema (Habilitar acceso al sistema, teniendo en cuenta los privilegios asignados)
+	* Registrar Producto
+	* Registrar Lote
+	* Registar entrada producto
+	* Registrar salida producto
+        * Permitir despacho de producto que este en negativo (existencia en cero).
+	* Registrar salida excepcional
+
+ - Inventario:
+	* Registrar Producto
+	* Registrar Lote
+	* Registar entrada producto
+	* Registrar salida producto
+
+ - Entrega de pedidos
+	* Registrar empleado
+	* Registar pedido
+	* Modificar pedido
+	* Consultar Pedido
+        * Borrar Pedido
+
+Laravel 10 GOGODEV
+Laravel 10 Coders Free
+Laravel 10 Aprendible
+PHP Aprendible 

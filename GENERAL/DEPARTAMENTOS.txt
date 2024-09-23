@@ -1,0 +1,19 @@
+DEPARTAMENTOS:
+
+7
+
+aLMACEN
+
+ventas
+	telemarketin
+		triangulaciòn
+
+	facturacion
+credito y cobranzas
+compras
+tesoreria
+auditoria
+administracion
+RRHH
+
+PRESIDENCIA (ADVERTENCIA)
