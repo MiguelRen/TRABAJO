@@ -1,1 +1,4 @@
 segundo capitulo de  gogodev
+plugin para 
+sentencia preparadas php
+validaciones en php
