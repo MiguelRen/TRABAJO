@@ -39,7 +39,3 @@ Sistemas de Roles y privilegios.
 	* Consultar Pedido
         * Borrar Pedido
 
-Laravel 10 GOGODEV
-Laravel 10 Coders Free
-Laravel 10 Aprendible
-PHP Aprendible 
