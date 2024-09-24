@@ -46,7 +46,12 @@ Conocimientos por aprender
 	GROOP POLICY DE WINDOWS
 	ABOUT:  SEARCH
 	PROTEXION DE URL 
-
+	Singleton, Factory o Dependency Injection, los constructores 
+	manejo de formularios php
+	manejo de sesiones en php
+	hacer práctica de develoteca (importante)
+	
+	
 	
 
 	Servidor (profit colgado,reiniciar el servidor)
