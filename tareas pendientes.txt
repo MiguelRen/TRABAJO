@@ -3,7 +3,9 @@ Tareas pendientes
 	Estar a la altura para la implementación del nuevo software
 	Sra Chon- ANY DESK- remoto- control total
 	limitar el acceso en las máquinas a otras páginas como youtube, facebook, Instagram,y así.
-
+	monitor de la chica de tesoreria
+	problemas para validar , en el servidor ftps (se cree queno se  puede e stablecer conexion)
+	 
 Conocimientos por aprender
 	batchScript
 	cloud router switch crs326-24g-2s+rm
@@ -36,6 +38,15 @@ Conocimientos por aprender
 	openSUSE 15.5
 	jquery
 	zerotier
+	conexion ftp
+	TELNET DDH
+	IVMS 4200
+	SOFTWARES DE MONITOPREO WEB	
+	RECUPERAR INFORMACIOND E LOS NAVEGADORES  DE OTRAS PC EN LA WEB
+	GROOP POLICY DE WINDOWS
+	ABOUT:  SEARCH
+	PROTEXION DE URL 
+
 	
 
 	Servidor (profit colgado,reiniciar el servidor)
@@ -59,6 +70,13 @@ Recomendaciones o datos
 	Laravel 10 Coders Free
 	Laravel 10 Aprendible
 	PHP Aprendible 
+	codegnitor
+	wordpress
+	fernando herrera
+	jptnmircha
+	dorian design
+	rOUTER os
+	
 	segundo capitulo de  gogodev
 	plugin para 
 	sentencia preparadas php
