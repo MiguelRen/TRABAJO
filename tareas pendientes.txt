@@ -50,7 +50,7 @@ Conocimientos por aprender
 	manejo de formularios php
 	manejo de sesiones en php
 	hacer práctica de develoteca (importante)
-	
+	defontana
 	
 	
 
