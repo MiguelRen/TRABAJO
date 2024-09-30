@@ -51,7 +51,9 @@ Conocimientos por aprender
 	manejo de sesiones en php
 	hacer práctica de develoteca (importante)
 	defontana
-	
+	2k12 investigar este  software 
+	indices de tablas de bases d e datos
+
 	
 
 	Servidor (profit colgado,reiniciar el servidor)
