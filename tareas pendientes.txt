@@ -5,6 +5,7 @@ Tareas pendientes
 	limitar el acceso en las máquinas a otras páginas como youtube, facebook, Instagram,y así.
 	monitor de la chica de tesoreria
 	problemas para validar , en el servidor ftps (se cree queno se  puede e stablecer conexion)
+	proponer hacer limpieza el monitor y verificación el estado del ups
 	 
 Conocimientos por aprender
 	batchScript
