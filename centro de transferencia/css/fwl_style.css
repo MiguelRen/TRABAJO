@@ -1,0 +1,345 @@
+body {
+	padding-top: 40px;
+}
+
+table a {
+	color: #666 !important;
+	text-decoration: underline !important;
+}
+
+.wrap {
+	height: 100% !important;
+}
+
+#thelogo img {
+	height: 180px !important;
+	width: auto;
+	margin-left: 20px;
+	margin-top: 20px;
+}
+
+.topclass {
+	background-color: #333 !important;
+}
+
+#containerfooter {
+	position: fixed;
+	bottom: 0px;
+	margin-top: 120px;
+	width: 100% !important;
+	background-color: #333 !important;
+	color: white !important;
+	padding-top: 0 !important;
+	height: 40px !important;
+}
+
+#topbar {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 1000;
+}
+
+.footercredits {
+	padding-top: 8px !important;
+}
+
+.topbarmenu .sf-menu ul {
+	z-index: 100000 !important;
+}
+
+.tabla_productos {
+	box-shadow: rgba(0,0,0,0.2) 0 4px 8px 0 ;
+}
+
+.tabla_productos a {
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+.tabla_descuentos td{
+	padding: 2px !important;
+	line-height: 12px !important;
+	vertical-align: middle !important;
+	font-size: 14px;
+}
+
+.tabla_precios td{
+	padding: 5px 5px !important;
+	line-height: 12px !important;
+	vertical-align: middle !important;
+	font-size: 14px;
+}
+
+.tabla_precio_descuento {
+	background-color: lightgreen;
+	font-weight: bold;
+}
+
+.tabla_ofertas_color {
+	font-weight: bold;
+}
+
+.descripcion_credito_tabla {
+	background-color: yellow;
+	padding: 2px;
+}
+
+.cantidad_pedido, .cantidad_carrito, .cantidad_pedido_detalle, .cantidad_pedido_proveedores, .descuento_pedido_proveedores, .descuento_carrito_proveedores, .cantidad_carrito_proveedores, .cantidad_pedido_vendedores, .descuento_pedido_vendedores, .descuento_carrito_vendedores, .cantidad_carrito_vendedores {
+	text-align: center;
+	width:4em;
+}
+
+.fwl_button_1 {
+	padding: 10px 20px;
+	color: white !important;
+	background-color: #c62b17;
+	border: 1px solid #c62b17;
+	display: inline-block;
+	text-transform: uppercase;
+	font-size: 12px;
+	cursor: pointer;
+	text-decoration: none !important;
+}
+
+.fwl_button_1:hover {
+	color: #c62b17;
+	background-color: #fff;
+}
+
+.fwl_button_3 {
+	padding: 4px 20px;
+	color: #333;
+	background-color: yellow;
+	border: 1px solid #666;
+	display: inline-block;
+	text-transform: uppercase;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.fwl_button_3:hover {
+	background-color: #fff;
+	color: #333;
+}
+
+.floating-button-1 {
+	position: fixed;
+	top: 90px;
+	right: 20px;
+	z-index: 100000;
+	padding: 20px 30px;
+	color: white;
+	background-color: #2d5c88;
+	border: 1px solid #2d5c88;
+	display: inline-block;
+	text-transform: uppercase;
+	font-size: 16px;
+	box-shadow: #999 2px 2px 10px;
+}
+
+.floating-button-1:hover {
+	color: #2d5c88;
+	background-color: #fff;
+}
+
+h2 {
+	font-size: 20px !important;
+	margin-bottom: 0 !important;
+}
+
+h3 {
+	font-size: 16px !important;
+	margin-bottom: 0 !important;
+}
+
+.limite_credito {
+	margin-bottom: 10px;
+	display: block;
+}
+
+#total_carrito_1 {
+	font-size: 20px;
+	padding: 10px 25px;
+	display: inline-block;
+	z-index: 1000;
+	box-shadow:	5px 5px 5px rgba(0,0,0,0.2);
+	font-weight: bold;
+	margin-top: 0;
+  position: fixed;
+  bottom: 0;
+	right: 20px;
+}
+
+.limite_credito_excedido {
+	color: rgba(255, 29, 22, 1);
+	text-align: left !important;
+	padding-top: 20px;
+}
+
+.limite_credito_excedido_2 {
+	background-color: rgba(255, 29, 22, 1);
+	color: white;
+}
+
+#user_login.input {
+	font-size: 14px !important;
+}
+
+.product_name {
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.borrar_del_carrito {
+	font-size: 18px;
+}
+
+.cuadricula_product {
+	border: 1px solid #999;
+	height: 500px;
+	padding-bottom: 20px;
+}
+
+.cuadricula_product a {
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+.cuadricula_nombre, .cuadricula_fabricante,  {
+	margin-bottom: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.cuadricula_precios, .cuadricula_cantidad, .cuadricula_detalles {
+	margin-bottom: 10px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.cuadricula_nombre {
+	font-weight: bold;
+}
+
+a.inicio-button {
+	width: 250px; 
+	border: 4px solid #666; 
+	display: inline-block; 
+	padding: 10px; 
+	border-radius: 10px;
+	color: #666;
+}
+
+a.inicio-button:hover {
+	border: 4px solid #333;
+	color: #333;
+}
+
+
+/* MODAL */
+
+#modal_producto {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.8);
+	z-index: 1000;
+	border: 2px solid #000;
+}
+
+#modal-product-box {
+	background-color: white;	
+	box-shadow:	5px 5px 5px rgba(0,0,0,0.6);
+	position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%);
+	padding: 30px;
+	width: 900px;
+}
+
+#modal-close {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	font-size: 26px;
+	cursor: pointer;
+}
+
+.modal_nombre {
+	font-size: 18px;
+	font-weight: bold;
+	text-align: left;
+}
+
+.modal_fabricante {
+	font-weight: bold;
+	font-size: 16px;
+	margin-top: 10px;
+}
+
+#total_carrito_2 {
+	position: absolute;
+	bottom: 50px;
+	font-size: 20px;
+	padding: 10px 25px;
+	display: block;
+	z-index: 1000;
+	box-shadow:	5px 5px 5px rgba(0,0,0,0.2);
+	font-weight: bold;
+}
+
+#login #nav {
+    display: block !important;
+}
+
+nav.pagination {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 20px;
+}
+
+nav.pagination ul {
+	list-style: none;
+	padding: 0;
+}
+
+nav.pagination li {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+.pagination a {
+	display: inline-block;
+	padding: 5px 10px;
+	text-decoration: none;
+	margin: 0 5px;
+}
+
+.pagination a.current, nav.pagination .active a {
+	background-color: #ccc;
+}
+
+/* REPORTES */
+
+.report_totals td {
+	padding: 0 10px 0 0; 
+	margin: 0;
+}
+
+.form-filters {
+	border: 1px solid rgba(0,0,0,0.1); 
+	line-height: 1.2; 
+	height: 40px; 
+	padding: 0 18px 0 8px;
+}
+
+.lista-resultados {
+	font-size: 12px;
+}

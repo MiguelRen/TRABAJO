@@ -1,0 +1,24 @@
+desborde  de imagen en el brackground
+agrega r aviso de "aumentar partes de pedido"
+agrega r aviso de " no puede ingresar mas despachadores" (numero de  partes limite)
+boton de cerrar session
+que los botone acepten el tipo de  dato que corresponde
+reglas de validacion
+en el textbox "partes" acepta float y solo debe ser integer
+ text box id="code_pedido" acepta solo debe acepta numeros enteros
+id="cant_unidades" no debe aceptar signos
+se manda informaciond el 
+consultar pedido = validaciones de tipo
+Detalles con las direcciones ... que deben a puntar al servidor
+registrar ruta = pàginas
+reqchequear pedido = si hay un solo despachador podrìa asignarse los  values a  los  input de un vez
+puede habe run editar falla
+
+registrar empleados = validadciones
+ desborde en el footer
+registrar a empleado= configurar la direccion a  buscar  para que sea el servidor y no el localhost
+estatus deshabilidado = no guarda
+crear cuanta = validacion
+registrar emplado = direcciones del servidor
+registrar_usuario = DB
+bOton de  salir

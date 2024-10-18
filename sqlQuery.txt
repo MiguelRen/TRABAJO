@@ -1,0 +1,5 @@
+USE [DVITA_A]
+GO
+UPDATE [dbo].[art]
+	SET ubicacion='P1/T11/N4'
+	WHERE co_art in ('001190','001191','004646','0133893','013894','001484')
