@@ -43,12 +43,13 @@ if(isset($_GET['rechequear'])){
             "error" => [],
         ];
         echo json_encode($response);
-    }elseif ($data == "full"){
-        $response = [
-            "data" => [],
-            "error" => ["Todos los pedidos tienen rechequeador"],
 
-        ];
+    // }elseif ($data == "full"){
+    //     $response = [
+    //         "data" => [],
+    //         "error" => ["Todos los pedidos tienen rechequeador"],
+
+    //     ];
 
     }else{
         $response = [

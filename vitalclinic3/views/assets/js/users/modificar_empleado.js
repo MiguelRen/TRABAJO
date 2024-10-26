@@ -34,7 +34,7 @@ const mostrar_empleados = (data_empleados) => {
 
 const extraer_data_empleados = async () => {
     try {
-        data_empleados = await app('http://192.168.0.164/vitalclinic/controllers/users/empleados.php?extraer_empleados=1');
+        data_empleados = await app('http://localhost/vitalclinic3/controllers/users/empleados.php?extraer_empleados=1');
         mostrar_empleados(data_empleados)
     } catch (error) {
         console.log(error)
@@ -43,7 +43,7 @@ const extraer_data_empleados = async () => {
 
 const modificar_empleado = async(form_data) => {
     try {
-      const res = await app('http://192.168.0.164/vitalclinic/controllers/users/empleados.php?modificar_empleado=1','POST', form_data);
+      const res = await app('http://localhost/vitalclinic3/controllers/users/empleados.php?modificar_empleado=1','POST', form_data);
         if(res.data.length > 0){
             alert('Modificación exitosa');
             limpiarformmulario();

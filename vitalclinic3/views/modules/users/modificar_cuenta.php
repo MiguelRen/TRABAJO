@@ -87,6 +87,6 @@
 </div>
 
 
-<script src="http://192.168.0.164/vitalclinic/views/assets/js/api.js"></script>
-<script src="http://192.168.0.164/vitalclinic/views/assets/js/utilidades.js"></script>
-<script src="http://192.168.0.164/vitalclinic/views/assets/js/users/modificar_cuenta.js" type="module"></script> 
+<script src="http://localhost/vitalclinic3/views/assets/js/api.js" type="module"></script>
+<script src="http://localhost/vitalclinic3/views/assets/js/utilidades.js" type="module"></script>
+<script src="http://localhost/vitalclinic3/views/assets/js/users/modificar_cuenta.js" type="module"></script> 

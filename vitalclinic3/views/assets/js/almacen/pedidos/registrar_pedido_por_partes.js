@@ -57,7 +57,7 @@ const mostrar_rutas = (data_rutas) => {
 
 const extraer_data_empleados = async () => {
     try {
-        const data_empleados = await app('http://192.168.0.164/vitalclinic/controllers/users/empleados.php?extraer_empleados=1');
+        const data_empleados = await app('http://localhost/vitalclinic3/controllers/users/empleados.php?extraer_empleados=1');
         mostrar_empleados(data_empleados)
     } catch (error) {
         console.log(error)
@@ -66,7 +66,7 @@ const extraer_data_empleados = async () => {
 
 const extraer_data_rutas = async () => {
     try {
-        const data_rutas = await app('http://192.168.0.164/vitalclinic/controllers/almacen/rutas/rutas.php?extraer_rutas=1');
+        const data_rutas = await app('http://localhost/vitalclinic3/controllers/almacen/rutas/rutas.php?extraer_rutas=1');
         mostrar_rutas(data_rutas)
     } catch (error) {
         console.log(error)
@@ -136,7 +136,7 @@ const registrar_pedido = async (form_data) => {
   if(is_loader) $loader.classList.remove("hidden");
 
   try {
-    const res = await app('http://192.168.0.164/vitalclinic/controllers/almacen/pedidos/pedidos.php?registrar_pedido=1','POST',form_data);
+    const res = await app('http://localhost/vitalclinic3/controllers/almacen/pedidos/pedidos.php?registrar_pedido=1','POST',form_data);
     if(res.data.length > 0){
       
       is_loader=false

@@ -7,7 +7,7 @@ const mostrar_error_login = () => {
 
 const login = async(form_data) => {
     try {
-        const data = await app('http://192.168.0.164/vitalclinic/controllers/auth.php?auth=1','POST',form_data);
+        const data = await app('http://localhost/vitalclinic3/controllers/auth.php?auth=1','POST',form_data);
         if(data.length > 0){
             //Redirigimos al inicio 
             window.location = "inicio"

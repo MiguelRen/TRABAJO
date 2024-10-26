@@ -70,7 +70,7 @@ const extraer_data_empleados = async () => {
     is_loader = true;
     if(is_loader) $loader.classList.remove("hidden");
     try {
-        const data_empleados = await app('http://192.168.0.164/vitalclinic/controllers/users/empleados.php?extraer_empleados=1');
+        const data_empleados = await app('http://localhost/vitalclinic3/controllers/users/empleados.php?extraer_empleados=1');
         is_loader = false;
         if(!is_loader) $loader.classList.add("hidden");
         mostrar_empleados(data_empleados)
@@ -85,7 +85,7 @@ const extraer_estadisticas_pedidos_por_despachador = async (form) => {
     is_loader = true;
    if(is_loader) $loader.classList.remove("hidden");
     try {
-        const data = await app('http://192.168.0.164/vitalclinic/controllers/almacen/estadisticas/pedidos_por_despachador.php?extraer_pedidos=1','POST',form);
+        const data = await app('http://localhost/vitalclinic3/controllers/almacen/estadisticas/pedidos_por_despachador.php?extraer_pedidos=1','POST',form);
         if(data.data.length > 0){
             is_loader = false;
             if(!is_loader) $loader.classList.add("hidden");

@@ -48,7 +48,7 @@ const mostrar_empleados = (data_empleados) => {
 
 const extraer_data_empleados = async () => {
     try {
-        const data_empleados = await app('http://192.168.0.164/vitalclinic/controllers/users/empleados.php?extraer_empleados=1');
+        const data_empleados = await app('http://localhost/vitalclinic3/controllers/users/empleados.php?extraer_empleados=1');
         console.log(data_empleados);
         mostrar_empleados(data_empleados)
     } catch (error) {
@@ -59,7 +59,7 @@ const extraer_data_empleados = async () => {
 
 const extraer_roles = async() => {
     try {
-        const data_roles = await app('http://192.168.0.164/vitalclinic/controllers/users/empleados.php?extraer_roles=1');
+        const data_roles = await app('http://localhost/vitalclinic3/controllers/users/empleados.php?extraer_roles=1');
         mostrar_roles(data_roles);
     } catch (error) {
         console.log(error)
@@ -68,7 +68,7 @@ const extraer_roles = async() => {
 
 const registrar_usuario = async(form_data) => {
     try {
-        const res = await app('http://192.168.0.164/vitalclinic/controllers/users/empleados.php?registrar_usuario=1','POST', form_data);
+        const res = await app('http://localhost/vitalclinic3/controllers/users/empleados.php?registrar_usuario=1','POST', form_data);
         console.log(res)
       } catch (error) {
         console.log(error)

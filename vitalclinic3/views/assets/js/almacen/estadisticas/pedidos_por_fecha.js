@@ -72,7 +72,7 @@ const extraer_data_rutas = async () => {
     is_loader = true;
     if(is_loader) $loader.classList.remove("hidden");
     try {
-        const data_rutas = await app('http://192.168.0.164/vitalclinic/controllers/almacen/rutas/rutas.php?extraer_rutas=1');
+        const data_rutas = await app('http://localhost/vitalclinic3/controllers/almacen/rutas/rutas.php?extraer_rutas=1');
         is_loader = false;
         if(!is_loader) $loader.classList.add("hidden");
         mostrar_rutas(data_rutas)
@@ -87,7 +87,7 @@ const extraer_estadisticas_pedidos_por_fecha = async (form) => {
     is_loader = true;
    if(is_loader) $loader.classList.remove("hidden");
     try {
-        const data = await app('http://192.168.0.164/vitalclinic/controllers/almacen/estadisticas/pedidos_por_fecha.php?extraer_pedidos=1','POST',form);
+        const data = await app('http://localhost/vitalclinic3/controllers/almacen/estadisticas/pedidos_por_fecha.php?extraer_pedidos=1','POST',form);
         is_loader = false;
         if(!is_loader) $loader.classList.add("hidden");
         mostrar_datos_tabla(data.data)

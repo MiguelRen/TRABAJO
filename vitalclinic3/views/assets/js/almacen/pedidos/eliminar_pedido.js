@@ -3,7 +3,7 @@ const d = document;
 
 const eliminar_pedido = async(form_data) => {
   try {
-    const res = await app('http://192.168.0.164/vitalclinic/controllers/almacen/pedidos/pedidos.php?eliminar_pedido=1','POST',form_data);
+    const res = await app('http://localhost/vitalclinic3/controllers/almacen/pedidos/pedidos.php?eliminar_pedido=1','POST',form_data);
     if(res.data.length > 0){
         alert('Eliminación del pedido exitosa');
         d.querySelector('#cod_pedido').value = "";

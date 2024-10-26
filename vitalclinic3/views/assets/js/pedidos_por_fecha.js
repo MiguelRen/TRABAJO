@@ -23,7 +23,7 @@ const mostrar_rutas = (data_rutas) => {
 
 const obtener_rutas = async () => {
     try {
-        const data = await app('http://192.168.0.164/registrar-pruebas/controllers/pedidos_por_fecha.php?obtener_rutas=1');
+        const data = await app('localhost/registrar-pruebas/controllers/pedidos_por_fecha.php?obtener_rutas=1');
         mostrar_rutas(data);
     } catch (error) {
         console.log(error);
@@ -32,7 +32,7 @@ const obtener_rutas = async () => {
 
 const consultar_pedidos = async (data_pedidos) => {
     try {
-        const data = await app('http://192.168.0.164/registrar-pruebas/controllers/pedidos_por_fecha.php?obtener_pedidos=1','POST',data_pedidos);
+        const data = await app('localhost/registrar-pruebas/controllers/pedidos_por_fecha.php?obtener_pedidos=1','POST',data_pedidos);
         console.log(data)
     } catch (error) {
         console.log(error);

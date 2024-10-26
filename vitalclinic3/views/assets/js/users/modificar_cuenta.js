@@ -50,7 +50,7 @@ const mostrar_roles = (data_roles) => {
 
 const extraer_data_accounts = async () => {
     try {
-        data_accounts = await app('http://192.168.0.164/vitalclinic/controllers/users/empleados.php?extraer_accounts=1');
+        data_accounts = await app('http://localhost/vitalclinic3/controllers/users/empleados.php?extraer_accounts=1');
         mostrar_accounts(data_accounts)
     } catch (error) {
         console.log(error)
@@ -59,7 +59,7 @@ const extraer_data_accounts = async () => {
 
 const extraer_roles = async() => {
     try {
-        const data_roles = await app('http://192.168.0.164/vitalclinic/controllers/users/empleados.php?extraer_roles=1');
+        const data_roles = await app('http://localhost/vitalclinic3/controllers/users/empleados.php?extraer_roles=1');
         mostrar_roles(data_roles);
     } catch (error) {
         console.log(error)
@@ -76,7 +76,7 @@ const limpiarformmulario = () => {
 
 const modifica_account = async(form_data) => {
     try {
-        const res = await app('http://192.168.0.164/vitalclinic/controllers/users/empleados.php?modificar_account=1','POST', form_data);
+        const res = await app('http://localhost/vitalclinic3/controllers/users/empleados.php?modificar_account=1','POST', form_data);
           if(res.data.length > 0){
               alert('Modificación exitosa');
               limpiarformmulario();

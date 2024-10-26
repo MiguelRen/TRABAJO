@@ -38,7 +38,7 @@ class Connection {
   
   // Constructor privado para evitar instanciación externa
   private function __construct() {
-      $this->connection = new mysqli('192.168.0.164', 'usuario', 'vital2024.', 'vitalclinic');
+      $this->connection = new mysqli('localhost', 'root', '', 'vitalclinic3');
 
       // Comprobar la conexión
       if ($this->connection->connect_error) {
