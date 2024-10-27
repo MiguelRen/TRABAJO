@@ -1,0 +1,7 @@
+definir aqui todos los errrores resulttos y por resolver
+problemas  con los type= "modules"
+crear btablas de movimientos y cambios
+evitar el cdn de tailwind
+mensaje sd eerror en html
+problemas con los  .env
+hacer que los pedidos se erchequen en automatico , el que  quede, cuando  queda uno
