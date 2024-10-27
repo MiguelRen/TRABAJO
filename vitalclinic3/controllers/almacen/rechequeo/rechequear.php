@@ -1,7 +1,13 @@
 <?php
 
 include "../../../models/almacen/rechequeo/rechequear.php";
-
+// Habilitar CORS solo para solicitudes desde http://webvital
+    // header("Access-Control-Allow-Origin: http://webvital");
+     // Permitir solo solicitudes POST y GET
+    // header("Access-Control-Allow-Methods: POST, GET,PUT,DELETE");
+     // Permitir ciertos encabezados
+    // header("Access-Control-Allow-Headers: Content-Type");
+     //Recibir las urls y decidir que accion ejecutaocalhost:5173
 class RechequearPedidoController{
 
     public function rechequear($embalador="",$id_pedido_d_r_e=[]){
@@ -43,14 +49,6 @@ if(isset($_GET['rechequear'])){
             "error" => [],
         ];
         echo json_encode($response);
-
-    // }elseif ($data == "full"){
-    //     $response = [
-    //         "data" => [],
-    //         "error" => ["Todos los pedidos tienen rechequeador"],
-
-    //     ];
-
     }else{
         $response = [
             "data" => [],

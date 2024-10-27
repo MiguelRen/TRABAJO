@@ -1,36 +1,6 @@
 <?php
 
-// class Connection{
-
-  // private $host;
-  // private $username;
-  // private $password;
-  // private $db_name;
-
-  // public function get_data_config() {
-  //   $this->host = '192.168.0.164';
-  //   $this->username = 'usuario';
-  //   $this->password = 'vital2024.';
-  //   $this->db_name = 'vitalclinic';
-  // }
-
-//   public function connect(){
-
-//       $this->get_data_config();
-
-//       // Crear conexión
-//       $conn = new mysqli($this->host, $this->username, $this->password, $this->db_name);
-      
-//       // Verificar conexión
-//       if ($conn->connect_error) {
-//           die("Connection failed: " . $conn->connect_error);
-//       }
-
-//       return $conn;
-//   }
-// }
-
-class Connection {
+  class Connection {
 
   private static $instance = null;
   private $connection;
@@ -38,7 +8,7 @@ class Connection {
   
   // Constructor privado para evitar instanciación externa
   private function __construct() {
-      $this->connection = new mysqli('localhost', 'root', '', 'vitalclinic3');
+      $this->connection = new mysqli('192.168.0.164', 'usuario', 'vital2024.', 'vitalclinic');
 
       // Comprobar la conexión
       if ($this->connection->connect_error) {
@@ -58,10 +28,4 @@ class Connection {
   public function getConnection() {
       return $this->connection;
   }
-
-//   // Evitar la clonación
-//   private function __clone() {}
-
-//   // Evitar la deserialización
-//   public function __wakeup() {}
 }

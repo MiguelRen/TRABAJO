@@ -73,7 +73,7 @@ const mostrar_datos_tabla_pedidos_d_r_e = async(data) => {
 
 const extraer_datos_pedido = async(form_data) => {
   try {
-      const data_pedido = await app('http://localhost/vitalclinic3/controllers/almacen/pedidos/pedidos.php?consultar_pedido=1','POST',form_data);
+      const data_pedido = await app('http://192.168.0.164/vitalclinic/controllers/almacen/pedidos/pedidos.php?consultar_pedido=1','POST',form_data);
       if(data_pedido.data.length > 0){  
         // console.log(data_pedido.data[0].tabla_pedidos_d_r_e)
         mostrar_datos_tabla_pedidos([data_pedido.data[0].tabla_pedidos]);
@@ -86,7 +86,7 @@ const extraer_datos_pedido = async(form_data) => {
   }
 }
 
-d.addEventListener('submit', e=> {
+d.addEventListener('submit', async e=> {
     e.preventDefault();
 
     const numero_pedido = e.target.cod_pedido.value;
@@ -99,5 +99,5 @@ d.addEventListener('submit', e=> {
     const form_data = new FormData();
     form_data.append('numero_pedido', numero_pedido);
 
-    extraer_datos_pedido(form_data);
+    await extraer_datos_pedido(form_data);
 })

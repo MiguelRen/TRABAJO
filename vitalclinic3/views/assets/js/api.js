@@ -1,5 +1,4 @@
 export default async function app(url, metodo = 'GET', datos = null) {
- 
     const opciones = {
         method: metodo,
     };
@@ -10,25 +9,15 @@ export default async function app(url, metodo = 'GET', datos = null) {
   
     try {
         const respuesta = await fetch(url, opciones);
-            console.log(url);
-            console.log(opciones);
-            
-            
         
         if (!respuesta.ok) {
             throw new Error(`Error en la petición: ${respuesta.status} ${respuesta.statusText}`);
         }
-
-
   
         const resultado = await respuesta.json();
-     
-        
         return resultado;
     } catch (error) {
-        
-        console.log( 'Error:'+ "'"+error+"'");
+        console.error('Error:', error);
         throw error; // Lanza el error para manejarlo donde se llame a la función
     }
 }
-

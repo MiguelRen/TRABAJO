@@ -18,8 +18,8 @@ class RechequearPedidoModel extends Connection{
         id_embalador,
         nombre,
         apellido
-        FROM mesa_rechequeadores
-        inner join empleados on mesa_rechequeadores.id_embalador = empleados.id
+        FROM pareja_rechequeadores_embaladores
+        inner join empleados on pareja_rechequeadores_embaladores.id_embalador = empleados.id
         WHERE id_rechequeador = '$user'";
         $result = $this->conn->query($sql);
 
@@ -83,8 +83,6 @@ class RechequearPedidoModel extends Connection{
         ORDER BY pedidos_d_r_e.id";
         $result = $this->conn->query($sql);
 
-
-        
         // Devolver los resultados como un array JSON
         $dataBusqueda = array();
         if ($result->num_rows > 0) {
@@ -92,13 +90,9 @@ class RechequearPedidoModel extends Connection{
             while($row = $result->fetch_assoc()) {
                 $dataBusqueda[] = $row;
             }
-            
-            // $dataBusqueda [] = "full";
-
         }
-        // print_r("blablalbal");
 
-               // Cerrar conexión
+        // Cerrar conexión
         //$this->conn->close();
         return $dataBusqueda;
     }
@@ -107,15 +101,9 @@ class RechequearPedidoModel extends Connection{
         session_start();
         $user = $_SESSION['user']['id_account'];
 
-        
-   
-         
-        
-
-
         // Iniciar la transacción
         $this->conn->begin_transaction();
-            
+
         try {
             // Primera operación: INSERT en la tabla pedidos
             $sql = "UPDATE pedidos_d_r_e set 

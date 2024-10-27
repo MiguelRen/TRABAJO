@@ -29,10 +29,8 @@ const mostrar_datos_tabla = (datos) => {
 
     //Enlazamos el template creado en el HTML
     const $template_body_table_pedidos = d.querySelector('#template_body_table_pedidos').content;
-
-    let total_pedidos = datos.length;
-    let total_unidades = 0;
-  
+	let total_pedidos = datos.length;
+    let total_unidades = 0;  
     if(datos.length > 0){
   
       datos.forEach((element,i) => {
@@ -41,8 +39,8 @@ const mostrar_datos_tabla = (datos) => {
         $template_body_table_pedidos.querySelector('.n_pedido').textContent = element.numero_pedido;
         $template_body_table_pedidos.querySelector('.ruta').textContent = element.ruta;
         $template_body_table_pedidos.querySelector('.unidades').textContent = element.cantidad_unidades;
-        total_unidades = total_unidades + Number(element.cantidad_unidades);
-        $template_body_table_pedidos.querySelector('.fecha').textContent = element.fecha;
+	total_unidades = total_unidades + Number(element.cantidad_unidades);       
+ $template_body_table_pedidos.querySelector('.fecha').textContent = element.fecha;
         $template_body_table_pedidos.querySelector('.distribuidor').textContent = `${element.nombre} ${element.apellido}`;
         $template_body_table_pedidos.querySelector('.action').dataset.id = element.id_pedido;
         
@@ -55,31 +53,32 @@ const mostrar_datos_tabla = (datos) => {
       $body_table.innerHTML = "";
       //Insertamos el fragment en la lista
       $body_table.append($fragment);
-
-      console.log(total_pedidos);
+	
+     console.log(total_pedidos);
       console.log(total_unidades)
       d.querySelector('#total_pedidos').innerText = "";
       d.querySelector('#total_pedidos').innerText = total_pedidos;
 
       d.querySelector('#total_unidades').innerText = "";
       d.querySelector('#total_unidades').innerText = total_unidades;
+
     }else{
       $body_table.innerHTML = "";
     }
-}
+  }
 
 const extraer_data_rutas = async () => {
     is_loader = true;
     if(is_loader) $loader.classList.remove("hidden");
     try {
-        const data_rutas = await app('http://localhost/vitalclinic3/controllers/almacen/rutas/rutas.php?extraer_rutas=1');
+        const data_rutas = await app('http://192.168.0.164/vitalclinic/controllers/almacen/rutas/rutas.php?extraer_rutas=1');
         is_loader = false;
         if(!is_loader) $loader.classList.add("hidden");
         mostrar_rutas(data_rutas)
     } catch (error) {
         console.log(error)
         is_loader = false;
-        if(!is_loader) $loader.classList.add("hidden");
+            if(!is_loader) $loader.classList.add("hidden");
     }
 };
 
@@ -87,10 +86,17 @@ const extraer_estadisticas_pedidos_por_fecha = async (form) => {
     is_loader = true;
    if(is_loader) $loader.classList.remove("hidden");
     try {
-        const data = await app('http://localhost/vitalclinic3/controllers/almacen/estadisticas/pedidos_por_fecha.php?extraer_pedidos=1','POST',form);
-        is_loader = false;
-        if(!is_loader) $loader.classList.add("hidden");
-        mostrar_datos_tabla(data.data)
+        const data = await app('http://192.168.0.164/vitalclinic/controllers/almacen/estadisticas/pedidos_por_fecha.php?extraer_pedidos=1','POST',form);
+        if(data.data.length > 0){
+            is_loader = false;
+            if(!is_loader) $loader.classList.add("hidden");
+            mostrar_datos_tabla(data.data)
+        }else{
+            is_loader=false;
+            $loader.classList.add("hidden"); 
+            alert('No hay pedidos registrados en esta fecha');
+        }
+        
     } catch (error) {
         console.log(error)
         is_loader = false;
@@ -136,9 +142,6 @@ d.addEventListener('submit',  async e => {
       formData.append('fechai', formatDate(startDateObj)); // Formato deseado
       formData.append('fechaf', formatDate(finalDateObj));
       formData.append('ruta', ruta);
-
-      console.log(formatDate(startDateObj))
-      console.log(formatDate(finalDateObj))
 
       await extraer_estadisticas_pedidos_por_fecha(formData);
 })

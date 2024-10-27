@@ -6,7 +6,7 @@
         private $conn;
 
         public function __construct(){
-            $this->conn = self::getInstance()->getConnection();
+            $this->conn =  $this->conn = self::getInstance()->getConnection();
         }
 
         public function verificar_privilegios($privilegio){

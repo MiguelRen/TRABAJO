@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-10-2024 a las 17:44:42
+-- Tiempo de generación: 13-10-2024 a las 17:29:49
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -35,15 +35,6 @@ CREATE TABLE `accounts` (
   `role_id` int(11) NOT NULL,
   `status` enum('1','2','','') NOT NULL COMMENT '1-Habilitado,2-Inhabilitado'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Volcado de datos para la tabla `accounts`
---
-
-INSERT INTO `accounts` (`id_account`, `id_empleado`, `username`, `password`, `role_id`, `status`) VALUES
-(1, 1, 'mvblanco', '26532066', 1, '1'),
-(2, 3, 'miguelr', '12345', 4, '1'),
-(3, 4, 'flori', '31487', 4, '1');
 
 -- --------------------------------------------------------
 
@@ -97,12 +88,131 @@ CREATE TABLE `empleados` (
 --
 
 INSERT INTO `empleados` (`id`, `cedula`, `nombre`, `apellido`, `status`, `departamento`) VALUES
-(1, '26532066', 'Manuel', 'Blanco', '1', 0),
-(3, '23896869', 'Miguel', 'Rengel', '1', 0),
-(4, '26689817', 'Floriana', 'Sucre', '1', 0),
-(5, '26532065', 'Jose', 'Miguel', '1', 0),
-(6, '28599775', 'Disanny', 'Monagas', '1', 0),
-(7, '2555555', 'Luis', 'Gimenez', '1', 0);
+(8, 'cedula', 'nombre', 'apellido', '1', 0),
+(9, '30537905', 'RAMIREZ', 'ROSMARVIS', '1', 0),
+(10, '25576833', 'FARIAS', 'JOSE', '1', 0),
+(11, '30563807', 'MARCANO', 'LOREN', '1', 0),
+(12, '15633017', 'SEQUEA', 'ZAYLETT', '1', 0),
+(13, '27946909', 'VELASQUEZ', 'ENMANUEL', '1', 0),
+(14, '20139224', 'RODRIGUEZ', 'GUSTAVO', '1', 0),
+(15, '31511191', 'GARCIA', 'LEONARDO', '1', 0),
+(16, '28198149', 'SALGADO', 'JESUS', '1', 0),
+(17, '27478807', 'CARMONA', 'JESUS', '1', 0),
+(18, '28429561', 'GASPAR', 'MARCELO', '1', 0),
+(19, '23534300', 'RODRIGUEZ', 'OMAR', '1', 0),
+(20, '25581123', 'RONDON', 'JESUS', '1', 0),
+(21, '30982507', 'RONDON', 'MICHELLE', '1', 0),
+(22, '26157491', 'CARABALLO', 'ERIKA', '1', 0),
+(23, '16517257', 'MARTINEZ', 'ALEXANDER', '1', 0),
+(24, '24503943', 'ALCALA', 'DARWIN', '1', 0),
+(25, '15903308', 'SALAZAR', 'YORMIS', '1', 0),
+(26, '28544551', 'SUBERO', 'ISABELLA', '1', 0),
+(27, '28599775', 'MONAGAS', 'DISANNY', '1', 0),
+(28, '31303400', 'QUIJADA', 'MARITZABETH', '1', 0),
+(29, '27325137', 'CORO', 'ELY SAUL', '1', 0),
+(30, '17405013', 'ALVAREZ', 'ALMIRA', '1', 0),
+(31, '25431302', 'LIRA', 'ROSIBEL', '1', 0),
+(32, '24865739', 'GARCIA', 'JORGE', '1', 0),
+(33, '29735524', 'MEDINA', 'ANGEL', '1', 0),
+(34, '24511617', 'LOPEZ', 'EDZABETH', '1', 0),
+(35, '29843827', 'BARRIOS', 'ROBERTO', '1', 0),
+(36, '17708432', 'JARAMILLO', 'ANGELIS', '1', 0),
+(37, '26061445', 'MATOS', 'ELIANNY', '1', 0),
+(38, '27719813', 'BRITO', 'FELCRIZE', '1', 0),
+(39, '25753475', 'RODRIGUEZ', 'DANIEL', '1', 0),
+(40, '31625332', 'RAMIREZ', 'VICTOR', '1', 0),
+(41, '29914065', 'GONZALEZ', 'MANUEL', '1', 0),
+(42, '20312562', 'CABELLO', 'JOSE', '1', 0),
+(43, '16516149', 'ALVAREZ', 'JOSE', '1', 0),
+(44, '26157804', 'BERMUDEZ', 'YAMIL', '1', 0),
+(45, '18825576', 'RODRIGUEZ', 'ALVIN', '1', 0),
+(46, '30784517', 'ORTIZ', 'FRANKLIN', '1', 0),
+(47, '22966872', 'BOLIVAR', 'ISAIC', '1', 0),
+(48, '22714197', 'VILLAHERMOSA', 'ROGER', '1', 0),
+(49, '27710312', 'RODRIGUEZ', 'JORGE', '1', 0),
+(50, '18236222', 'GONZALEZ', 'LUIS ', '1', 0),
+(51, '20140822', 'GUERRA', 'JOSE', '1', 0),
+(52, '29735742', 'MEDINA', 'JOSE', '1', 0),
+(53, '23534480', 'RODRIGUEZ', 'PEDRO', '1', 0),
+(54, '30386615', 'LEON ', 'SEBASTIAN', '1', 0),
+(55, '30198536', 'SEQUEA', 'KENYERSON', '1', 0),
+(56, '18826648', 'ROJAS', 'JOSE', '1', 0),
+(57, '22722906', 'BOLIVAR', 'DENYS', '1', 0),
+(58, '23534649', 'PALMA', 'NERIELIS', '1', 0),
+(59, '30367839', 'CA?A', 'LUIS', '1', 0),
+(60, '21349873', 'TRUJILLO', 'PABLO', '1', 0),
+(61, '27946636', 'TRUJILLO', 'SAMUEL', '1', 0),
+(62, '24864437', 'ROJAS', 'MARIO', '1', 0),
+(63, '25568479', 'ASTUDILLO', 'FIDEL', '1', 0),
+(64, '26531656', 'BOLIVAR', 'LUIS', '1', 0),
+(65, '30744649', 'LICETT', 'YORDANNY', '1', 0),
+(66, '26865440', 'MAESTRE', 'MAYLIS', '1', 0),
+(67, '21381040', 'LEZAMA', 'JOSE', '1', 0),
+(68, '28608667', 'CASTILLO', 'DEIVIS', '1', 0),
+(69, '22618623', 'RIVERO', 'HENDER', '1', 0),
+(70, '23818085', 'RAMOS', 'GENESIS', '1', 0),
+(71, '26101881', 'LA ROSA', 'RICARDO', '1', 0),
+(72, '25428342', 'RIOS', 'ANTHONY', '1', 0),
+(73, '25898123', 'BRAVO', 'ELIANY', '1', 0),
+(74, '29974595', 'RODRIGUEZ', 'BRYANT', '1', 0),
+(75, '31315468', 'LEONETT', 'LEANDRYS', '1', 0),
+(76, '26291741', 'VALERA', 'ANDRES', '1', 0),
+(77, '26532923', 'ZAMORA', 'JUAN', '1', 0),
+(78, '25930478', 'BOUTTO', 'DIEGO', '1', 0),
+(79, '30843160', 'DUARTE', 'CARLOS', '1', 0),
+(80, '30487691', 'GUERRA', 'HERMES', '1', 0),
+(81, '27767449', 'SANZONETTI', 'ROBERT', '1', 0),
+(82, '30794761', 'LOPEZ', 'NELSON', '1', 0),
+(83, '29642940', 'PEREZ', 'JESUS', '1', 0),
+(84, '26212748', 'CHIGUITA', 'ELIEZER', '1', 0),
+(85, '16062678', 'VILLARROEL', 'EDGAR', '1', 0),
+(86, '19663519', 'MAITA', 'MAITA DANIEL', '1', 0),
+(87, '26532072', 'LUNA', 'ANIBAL', '1', 0),
+(88, '22722391', 'RODRIGUEZ', 'DENNYS', '1', 0),
+(89, '21050078', 'D?ARTHENAY ', 'CARLOS', '1', 0),
+(90, '20140012', 'RODRIGUEZ', 'ANTHONY', '1', 0),
+(91, '18652530', 'RONDON', 'JESUS', '1', 0),
+(92, '30340898', 'HERNANDEZ', 'MIGUEL', '1', 0),
+(93, '32051041', 'RODRIGUEZ', 'JORGE', '1', 0),
+(94, '16176887', 'MARCANO', 'COLUMBA', '1', 0),
+(95, '30274774', 'GIL', 'ADELIANNY', '1', 0),
+(96, '16174078', 'CHACON', 'JOSE', '1', 0),
+(97, '24864537', 'HERNANDEZ', 'MOISES', '1', 0),
+(98, '28216052', 'ANTUAREZ', 'GABRIEL', '1', 0),
+(99, '14423623', 'SUAREZ', 'MARIANGELA', '1', 0),
+(100, '25909211', 'BOLIVAR', 'YENFRINSO', '1', 0),
+(101, '27001065', 'RODRIGUEZ', 'JOEL', '1', 0),
+(102, '31649963', 'SALAZAR', 'MANUEL', '1', 0),
+(103, '19875984', 'BLANCO', 'ALEJANDRO', '1', 0),
+(104, '31532286', 'GUERRA', 'ALFREDO', '1', 0),
+(105, '30564549', 'BELISARIO', 'DANIELA', '1', 0),
+(106, '25049902', 'SCHOLTZ', 'GERALD', '1', 0),
+(107, '29974593', 'BRITO', 'ANGELICA', '1', 0),
+(108, '26517350', 'RODRIGUEZ', 'STHEFANI', '1', 0),
+(109, '28366574', 'GUZMAN', 'CARELYS', '1', 0),
+(110, '20919843', 'COLINA', 'BRYAN', '1', 0),
+(111, '31419072', 'CARRABS', 'GERARDO', '1', 0),
+(112, '30776375', 'PALACIOS', 'JESUS', '1', 0),
+(113, '21123356', 'RAMOS', 'CARLOS', '1', 0),
+(114, '31532416', 'SANCLER', 'NICOLE', '1', 0),
+(115, '25612658', 'RAMIREZ', 'ROSMARIANT', '1', 0),
+(116, '17933428', 'DIAZ', 'NORELIS', '1', 0),
+(117, '20918219', 'RODRIGUEZ', 'ANGEL', '1', 0),
+(118, '29700203', 'VALLENILLA', 'JOSE', '1', 0),
+(119, '21689435', 'HERNANDEZ', 'LEANDRO', '1', 0),
+(120, '31733641', 'RAMOS', 'LUIS', '1', 0),
+(121, '28274888', 'BASILE ', 'RINO', '1', 0),
+(122, '31675876', 'CAMACHO', 'MIGUEL', '1', 0),
+(123, '26695018', 'SANTA ROSA ', 'EDINSON', '1', 0),
+(124, '27559508', 'IDROGO BRITO', 'ERWIN', '1', 0),
+(125, '30117905', 'CONTRERAS', 'FERNANDO', '1', 0),
+(126, '12538556', 'HERRERA ', 'ARISTIDES', '1', 0),
+(127, '29549086', 'ZARAGOZA', 'JOSE', '1', 0),
+(128, '25026142', 'SALAZAR', 'JOSE', '1', 0),
+(129, '26650214', 'PEREZ', 'LUIS', '1', 0),
+(130, '25282878', 'CEDE?O', 'CARLOS', '1', 0),
+(131, '25452974', 'CORTEZ', 'DANIEL', '1', 0),
+(132, '27325306', 'AGUILAR', 'IVAN', '1', 0);
 
 -- --------------------------------------------------------
 
@@ -133,37 +243,6 @@ CREATE TABLE `fallas_despachador` (
   `fecha` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Volcado de datos para la tabla `fallas_despachador`
---
-
-INSERT INTO `fallas_despachador` (`id`, `despachador`, `id_pedido_d_r_e`, `motivo`, `descripcion`, `fecha`) VALUES
-(2, 4, 3, 1, 'Le falto un acetaminofen', '2024-10-05 17:39:13'),
-(5, 3, 41, 2, 'kadkmadkadm', '2024-10-05 17:43:53'),
-(6, 4, 45, 1, 'Le sobro dos diclofenac', '2024-10-06 10:50:02'),
-(7, 6, 47, 1, 'Le falto 1 amiodarona de land', '2024-10-06 10:50:21'),
-(8, 3, 44, 1, 'Le falto 1 atorvastatina', '2024-10-06 10:51:05'),
-(9, 3, 44, 1, 'falto una Dexametosa de kmplus', '2024-10-06 11:18:43'),
-(10, 3, 53, 1, 'admkadmkad', '2024-10-06 11:46:50'),
-(11, 3, 54, 2, 'Trajo un bisolvon demas', '2024-10-06 12:32:36'),
-(12, 3, 55, 1, 'Le falto una dexametasona', '2024-10-06 13:59:14'),
-(13, 3, 55, 2, 'Trajo un bisolvon demas', '2024-10-06 13:59:29'),
-(14, 4, 56, 3, 'Trajo un aceminofen de la sante en vez de calox', '2024-10-06 13:59:47'),
-(18, 1, 2, 1, '15151515', '2024-10-06 15:15:40'),
-(19, 4, 3, 1, 'ghibhbjhbjb', '2024-10-06 15:16:16'),
-(20, 6, 1, 1, 'fassffsfsf', '2024-10-07 10:07:44'),
-(21, 3, 4, 2, '8298952898', '2024-10-07 10:08:49'),
-(22, 1, 62, 1, 'wsfsfssf', '2024-10-07 10:48:46'),
-(23, 1, 62, 2, 'sfsfffsfsf', '2024-10-07 10:48:54'),
-(24, 1, 62, 3, 'wfwffw', '2024-10-07 10:49:00'),
-(25, 5, 63, 1, 'rwrwrwrr', '2024-10-07 10:49:07'),
-(26, 5, 63, 3, 'wrwrwwrwr', '2024-10-07 10:49:13'),
-(27, 6, 64, 1, 'wrwrwwrwr', '2024-10-07 10:49:19'),
-(28, 6, 64, 2, 'wrwrrwr', '2024-10-07 10:49:25'),
-(29, 6, 64, 1, 'wrrwrwrwr', '2024-10-07 10:49:30'),
-(30, 6, 64, 1, 'wrwrwrrrwrwrwr', '2024-10-07 10:49:37'),
-(31, 6, 64, 2, 'wrwwrrwrwrw', '2024-10-07 10:49:43');
-
 -- --------------------------------------------------------
 
 --
@@ -181,24 +260,39 @@ CREATE TABLE `lotes` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `mesa_rechequeadores`
+-- Estructura de tabla para la tabla `mesas_rechequeadoras`
 --
 
-CREATE TABLE `mesa_rechequeadores` (
+CREATE TABLE `mesas_rechequeadoras` (
   `id` int(11) NOT NULL,
-  `num_mesa` int(11) NOT NULL,
-  `id_rechequeador` int(11) NOT NULL,
-  `id_embalador` int(11) NOT NULL,
-  `horario_almuerzo` varchar(8) NOT NULL,
-  `dia_libre` varchar(10) NOT NULL
+  `num_mesa` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Volcado de datos para la tabla `mesa_rechequeadores`
+-- Volcado de datos para la tabla `mesas_rechequeadoras`
 --
 
-INSERT INTO `mesa_rechequeadores` (`id`, `num_mesa`, `id_rechequeador`, `id_embalador`, `horario_almuerzo`, `dia_libre`) VALUES
-(1, 1, 1, 3, '12pm', 'Viernes');
+INSERT INTO `mesas_rechequeadoras` (`id`, `num_mesa`) VALUES
+(2, 1),
+(3, 2),
+(4, 3),
+(5, 4),
+(6, 5),
+(7, 6),
+(8, 7),
+(9, 8),
+(10, 9),
+(11, 10),
+(12, 11),
+(13, 12),
+(14, 13),
+(15, 14),
+(16, 15),
+(17, 16),
+(18, 17),
+(19, 18),
+(20, 19),
+(21, 20);
 
 -- --------------------------------------------------------
 
@@ -223,6 +317,66 @@ INSERT INTO `motivo_fallas` (`id`, `descripcion`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `pareja_rechequeadores_embaladores`
+--
+
+CREATE TABLE `pareja_rechequeadores_embaladores` (
+  `id` int(11) NOT NULL,
+  `id_mesa` int(11) NOT NULL,
+  `id_rechequeador` int(11) DEFAULT NULL,
+  `id_embalador` int(11) DEFAULT NULL,
+  `turno` enum('1','2') NOT NULL COMMENT '1-Mañana,2-Tarde'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `pareja_rechequeadores_embaladores`
+--
+
+INSERT INTO `pareja_rechequeadores_embaladores` (`id`, `id_mesa`, `id_rechequeador`, `id_embalador`, `turno`) VALUES
+(21, 2, NULL, NULL, '1'),
+(22, 3, NULL, NULL, '1'),
+(23, 4, NULL, NULL, '1'),
+(24, 5, NULL, NULL, '1'),
+(25, 6, NULL, NULL, '1'),
+(26, 7, NULL, NULL, '1'),
+(27, 8, NULL, NULL, '1'),
+(28, 9, NULL, NULL, '1'),
+(29, 10, NULL, NULL, '1'),
+(30, 11, NULL, NULL, '1'),
+(31, 12, NULL, NULL, '1'),
+(32, 13, NULL, NULL, '1'),
+(33, 14, NULL, NULL, '1'),
+(34, 15, NULL, NULL, '1'),
+(35, 16, NULL, NULL, '1'),
+(36, 17, NULL, NULL, '1'),
+(37, 18, NULL, NULL, '1'),
+(38, 19, NULL, NULL, '1'),
+(39, 20, NULL, NULL, '1'),
+(40, 21, NULL, NULL, '1'),
+(41, 2, NULL, NULL, '2'),
+(42, 3, NULL, NULL, '2'),
+(43, 4, NULL, NULL, '2'),
+(44, 5, NULL, NULL, '2'),
+(45, 6, NULL, NULL, '2'),
+(46, 7, NULL, NULL, '2'),
+(47, 8, NULL, NULL, '2'),
+(48, 9, NULL, NULL, '2'),
+(49, 10, NULL, NULL, '2'),
+(50, 11, NULL, NULL, '2'),
+(51, 12, NULL, NULL, '2'),
+(52, 13, NULL, NULL, '2'),
+(53, 14, NULL, NULL, '2'),
+(54, 15, NULL, NULL, '2'),
+(55, 16, NULL, NULL, '2'),
+(56, 17, NULL, NULL, '2'),
+(57, 18, NULL, NULL, '2'),
+(58, 19, NULL, NULL, '2'),
+(59, 20, NULL, NULL, '2'),
+(60, 21, NULL, NULL, '2');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `pedidos`
 --
 
@@ -234,40 +388,6 @@ CREATE TABLE `pedidos` (
   `cantidad_unidades` int(11) NOT NULL,
   `distribuidor_pedidos` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Volcado de datos para la tabla `pedidos`
---
-
-INSERT INTO `pedidos` (`id_pedido`, `numero_pedido`, `id_ruta`, `fecha`, `cantidad_unidades`, `distribuidor_pedidos`) VALUES
-(5, '123456789', 3, '2024-09-28 14:46:35', 5000, 1),
-(14, '1234567', 1, '2024-09-28 10:38:21', 10000, 1),
-(15, '12345', 1, '2024-09-28 10:39:17', 10000, 1),
-(16, '4545454', 1, '2024-09-28 11:16:11', 10000, 1),
-(17, '12334545', 1, '2024-09-28 11:21:34', 2000, 1),
-(18, '123456789987', 1, '2024-09-28 13:20:23', 100000, 1),
-(19, '123456321', 1, '2024-09-30 12:37:36', 1000, 1),
-(20, '1234561234', 1, '2024-09-30 12:40:51', 2000, 1),
-(21, '1234569784563', 1, '2024-09-30 12:42:23', 850, 1),
-(22, '123456121551', 1, '2024-09-30 12:42:58', 10000, 1),
-(23, '123456515151', 1, '2024-09-30 12:43:51', 2021, 1),
-(24, '18118', 1, '2024-09-30 12:44:19', 1200, 1),
-(25, '215185151515', 1, '2024-09-30 12:47:14', 1200, 1),
-(26, '51125151245', 1, '2024-09-30 12:47:41', 1200, 1),
-(27, '241442154125', 1, '2024-09-30 12:48:12', 15151, 1),
-(28, '1234545', 1, '2024-10-02 16:54:05', 1000, 1),
-(29, '1189189515', 2, '2024-10-02 16:54:29', 152111212, 1),
-(30, '26532055', 1, '2024-10-03 12:21:37', 10000, 1),
-(31, '26532066', 1, '2024-10-03 17:46:37', 5200, 1),
-(32, '123321123', 1, '2024-10-03 17:48:11', 100, 1),
-(33, '123654', 1, '2024-10-05 17:42:51', 10000, 1),
-(34, '256314', 1, '2024-10-06 10:48:32', 10000, 1),
-(36, '151851515', 1, '2024-10-06 11:40:12', 51515, 1),
-(37, '1230321', 1, '2024-10-06 13:57:45', 1000, 1),
-(39, '1230456', 1, '2024-10-07 09:22:03', 1000, 1),
-(40, '3210321', 1, '2024-10-07 10:47:56', 1000, 1),
-(41, '1230456789', 1, '2024-10-07 11:00:23', 1000, 1),
-(42, '1234569870', 1, '2024-10-07 11:01:33', 1000, 1);
 
 -- --------------------------------------------------------
 
@@ -283,77 +403,6 @@ CREATE TABLE `pedidos_d_r_e` (
   `id_embalador` int(11) DEFAULT NULL,
   `fecha_rechequeado` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Volcado de datos para la tabla `pedidos_d_r_e`
---
-
-INSERT INTO `pedidos_d_r_e` (`id`, `id_pedido`, `id_despachador`, `id_rechequeador`, `id_embalador`, `fecha_rechequeado`) VALUES
-(1, 5, 6, 1, 3, '2024-10-03 17:21:04'),
-(2, 5, 1, 1, 3, '2024-10-03 17:45:44'),
-(3, 5, 4, 3, 3, '2024-09-17 16:05:25'),
-(4, 5, 3, 1, 3, '2024-10-03 17:26:50'),
-(5, 5, 1, 1, 3, '2024-10-03 17:21:04'),
-(6, 14, 1, NULL, NULL, NULL),
-(7, 14, 3, NULL, NULL, NULL),
-(8, 14, 4, NULL, NULL, NULL),
-(9, 15, 1, NULL, NULL, NULL),
-(10, 15, 3, NULL, NULL, NULL),
-(11, 15, 4, NULL, NULL, NULL),
-(12, 16, 1, NULL, NULL, NULL),
-(13, 16, 3, NULL, NULL, NULL),
-(14, 17, 1, NULL, NULL, NULL),
-(15, 17, 3, NULL, NULL, NULL),
-(16, 17, 4, NULL, NULL, NULL),
-(17, 18, 1, NULL, NULL, NULL),
-(18, 18, 3, NULL, NULL, NULL),
-(19, 18, 4, NULL, NULL, NULL),
-(20, 19, 1, NULL, NULL, NULL),
-(21, 20, 1, NULL, NULL, NULL),
-(22, 21, 1, NULL, NULL, NULL),
-(23, 22, 1, NULL, NULL, NULL),
-(24, 23, 1, NULL, NULL, NULL),
-(25, 24, 1, NULL, NULL, NULL),
-(26, 25, 5, NULL, NULL, NULL),
-(27, 26, 5, NULL, NULL, NULL),
-(28, 27, 7, NULL, NULL, NULL),
-(29, 28, 3, NULL, NULL, NULL),
-(30, 29, 4, NULL, NULL, NULL),
-(31, 29, 7, NULL, NULL, NULL),
-(32, 29, 4, NULL, NULL, NULL),
-(33, 29, 3, NULL, NULL, NULL),
-(34, 30, 1, 1, 3, '2024-10-03 16:50:49'),
-(35, 31, 1, 1, 6, '2024-10-03 17:46:57'),
-(36, 31, 3, 1, 5, '2024-10-03 17:47:15'),
-(37, 31, 4, 1, 5, '2024-10-03 17:47:15'),
-(38, 31, 5, 1, 4, '2024-10-03 17:47:28'),
-(39, 31, 6, 1, 6, '2024-10-03 17:46:57'),
-(40, 32, 6, 1, 3, '2024-10-03 17:48:21'),
-(41, 33, 3, 1, 3, '2024-10-05 17:43:28'),
-(42, 33, 7, 1, 3, '2024-10-05 17:43:28'),
-(43, 34, 1, 1, 3, '2024-10-06 10:49:24'),
-(44, 34, 3, 1, 3, '2024-10-06 10:49:24'),
-(45, 34, 4, 1, 3, '2024-10-06 10:49:24'),
-(46, 34, 5, 1, 3, '2024-10-06 10:49:24'),
-(47, 34, 6, 1, 3, '2024-10-06 10:49:24'),
-(52, 36, 1, 3, 4, '2024-10-06 12:19:32'),
-(53, 36, 3, 1, 3, '2024-10-06 11:43:48'),
-(54, 36, 3, 2, 3, '2024-10-23 12:16:35'),
-(55, 37, 3, 1, 3, '2024-10-06 13:58:06'),
-(56, 37, 4, 1, 3, '2024-10-06 13:58:06'),
-(57, 37, 5, 1, 3, '2024-10-06 13:58:06'),
-(62, 39, 1, 1, 1, '2024-10-07 10:48:28'),
-(63, 39, 5, 1, 1, '2024-10-07 10:48:28'),
-(64, 39, 6, 1, 1, '2024-10-07 10:48:28'),
-(65, 40, 3, NULL, NULL, NULL),
-(66, 40, 6, NULL, NULL, NULL),
-(67, 40, 5, NULL, NULL, NULL),
-(68, 41, 1, 1, 3, '2024-10-07 11:00:39'),
-(69, 41, 3, 1, 3, '2024-10-07 11:00:39'),
-(70, 41, 4, 1, 3, '2024-10-07 11:00:39'),
-(71, 42, 1, NULL, NULL, NULL),
-(72, 42, 3, 1, 7, '2024-10-07 11:24:13'),
-(73, 42, 4, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -371,6 +420,7 @@ CREATE TABLE `privilegios` (
 --
 
 INSERT INTO `privilegios` (`id`, `accion`) VALUES
+(23, 'asignar_mesa'),
 (5, 'consultar_pedido'),
 (12, 'eliminar_fallas_pedido'),
 (4, 'eliminar_pedido'),
@@ -391,7 +441,8 @@ INSERT INTO `privilegios` (`id`, `accion`) VALUES
 (9, 'registrar_salida_articulo'),
 (10, 'registrar_salida_excepcional_articulos'),
 (16, 'visualizar_estadisticas'),
-(19, 'visualizar_estadisticas_fallas_despachador');
+(19, 'visualizar_estadisticas_fallas_despachador'),
+(22, 'visualizar_total_pedidos');
 
 -- --------------------------------------------------------
 
@@ -484,7 +535,9 @@ INSERT INTO `roles_privilegios` (`id`, `id_role`, `id_privilegio`) VALUES
 (51, 6, 20),
 (52, 1, 21),
 (53, 2, 21),
-(54, 3, 21);
+(54, 3, 21),
+(55, 1, 22),
+(56, 1, 23);
 
 -- --------------------------------------------------------
 
@@ -502,9 +555,85 @@ CREATE TABLE `rutas` (
 --
 
 INSERT INTO `rutas` (`id`, `name`) VALUES
-(1, 'Maturin'),
-(2, 'caripito'),
-(3, 'sucre');
+(5, 'ACHAGUAS'),
+(6, 'AGUASAY'),
+(7, 'AMAZONAS'),
+(8, 'ANACO'),
+(9, 'APURE'),
+(10, 'ARAGUA DE BARCELONA'),
+(11, 'BARCELONA'),
+(12, 'BARINAS'),
+(13, 'BARQUISIMETO'),
+(14, 'BARRANCAS'),
+(15, 'BOCA DE UCHIRE'),
+(16, 'BOLIVAR'),
+(17, 'CAICARA'),
+(18, 'CALABOZO'),
+(19, 'CALLAO'),
+(20, 'CAMAGUAN'),
+(21, 'CANTAURA'),
+(22, 'CARABOBO'),
+(23, 'CARIACO'),
+(24, 'CARIPE'),
+(25, 'CARIPITO'),
+(26, 'CARUPANO'),
+(27, 'CASANAY'),
+(28, 'CAUCAGUA'),
+(29, 'CHAGUARAMAS'),
+(30, 'CIUDAD BOLIVAR'),
+(31, 'CIUDAD PIAR'),
+(32, 'CLARINES'),
+(33, 'COJEDES'),
+(34, 'CUMANA'),
+(35, 'DISTRITO CAPITAL'),
+(36, 'EL CHAPARRO'),
+(37, 'EL DORADO'),
+(38, 'EL FURRIAL'),
+(39, 'EL MANTECO'),
+(40, 'EL PALMAR'),
+(41, 'EL SOCORRO'),
+(42, 'EL SOMBRERO'),
+(43, 'EL TEJERO'),
+(44, 'EL TIGRE'),
+(45, 'FALCON'),
+(46, 'GUARENAS'),
+(47, 'GUASIPATI'),
+(48, 'GUATIRE'),
+(49, 'JUSEPIN'),
+(50, 'LA GUAIRA'),
+(51, 'LA TOSCANA'),
+(52, 'LAS CLARITAS'),
+(53, 'LECHERIAS'),
+(54, 'MARACAY'),
+(55, 'MARGARITA'),
+(56, 'MATURIN'),
+(57, 'MERCEDES DEL LLANO'),
+(58, 'MERIDA'),
+(59, 'MIRANDA'),
+(60, 'PARIAGUAN'),
+(61, 'PORTUGUESA'),
+(62, 'PUERTO CABELLO'),
+(63, 'PUERTO LA CRUZ'),
+(64, 'PUERTO ORDAZ'),
+(65, 'PUERTO PIRITU'),
+(66, 'PUNTA DE MATA'),
+(67, 'SAN ANTONIO'),
+(68, 'SAN FELIX'),
+(69, 'SANTA BARBARA'),
+(70, 'SANTA ELENA DE UAIREN'),
+(71, 'TACHIRA'),
+(72, 'TEMBLADOR'),
+(73, 'TIGRITO'),
+(74, 'TUCUPIDO'),
+(75, 'TUCUPITA'),
+(76, 'TUMEREMO'),
+(77, 'UPATA'),
+(78, 'URACOA'),
+(79, 'VALENCIA'),
+(80, 'VALLE DE LA PASCUA'),
+(81, 'YARACUY'),
+(82, 'ZARAZA'),
+(83, 'ZULIA');
 
 -- --------------------------------------------------------
 
@@ -595,19 +724,26 @@ ALTER TABLE `lotes`
   ADD KEY `art` (`art`);
 
 --
--- Indices de la tabla `mesa_rechequeadores`
+-- Indices de la tabla `mesas_rechequeadoras`
 --
-ALTER TABLE `mesa_rechequeadores`
+ALTER TABLE `mesas_rechequeadoras`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `num_mesa` (`num_mesa`),
-  ADD KEY `id_rechequeador` (`id_rechequeador`),
-  ADD KEY `id_embalador` (`id_embalador`);
+  ADD UNIQUE KEY `num_mesa` (`num_mesa`);
 
 --
 -- Indices de la tabla `motivo_fallas`
 --
 ALTER TABLE `motivo_fallas`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `pareja_rechequeadores_embaladores`
+--
+ALTER TABLE `pareja_rechequeadores_embaladores`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_mesa` (`id_mesa`),
+  ADD KEY `id_rechequeador` (`id_rechequeador`),
+  ADD KEY `id_embalador` (`id_embalador`);
 
 --
 -- Indices de la tabla `pedidos`
@@ -698,7 +834,7 @@ ALTER TABLE `departamento`
 -- AUTO_INCREMENT de la tabla `empleados`
 --
 ALTER TABLE `empleados`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
 
 --
 -- AUTO_INCREMENT de la tabla `entrada_existencia_lotes_productos`
@@ -719,16 +855,22 @@ ALTER TABLE `lotes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `mesa_rechequeadores`
+-- AUTO_INCREMENT de la tabla `mesas_rechequeadoras`
 --
-ALTER TABLE `mesa_rechequeadores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `mesas_rechequeadoras`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `motivo_fallas`
 --
 ALTER TABLE `motivo_fallas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `pareja_rechequeadores_embaladores`
+--
+ALTER TABLE `pareja_rechequeadores_embaladores`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT de la tabla `pedidos`
@@ -746,7 +888,7 @@ ALTER TABLE `pedidos_d_r_e`
 -- AUTO_INCREMENT de la tabla `privilegios`
 --
 ALTER TABLE `privilegios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -758,13 +900,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `roles_privilegios`
 --
 ALTER TABLE `roles_privilegios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT de la tabla `rutas`
 --
 ALTER TABLE `rutas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT de la tabla `salida_excepcional_articulos`
@@ -811,11 +953,12 @@ ALTER TABLE `lotes`
   ADD CONSTRAINT `lotes_ibfk_1` FOREIGN KEY (`art`) REFERENCES `articulos` (`art`);
 
 --
--- Filtros para la tabla `mesa_rechequeadores`
+-- Filtros para la tabla `pareja_rechequeadores_embaladores`
 --
-ALTER TABLE `mesa_rechequeadores`
-  ADD CONSTRAINT `mesa_rechequeadores_ibfk_1` FOREIGN KEY (`id_embalador`) REFERENCES `empleados` (`id`),
-  ADD CONSTRAINT `mesa_rechequeadores_ibfk_2` FOREIGN KEY (`id_rechequeador`) REFERENCES `accounts` (`id_account`);
+ALTER TABLE `pareja_rechequeadores_embaladores`
+  ADD CONSTRAINT `pareja_rechequeadores_embaladores_ibfk_1` FOREIGN KEY (`id_mesa`) REFERENCES `mesas_rechequeadoras` (`id`),
+  ADD CONSTRAINT `pareja_rechequeadores_embaladores_ibfk_2` FOREIGN KEY (`id_rechequeador`) REFERENCES `accounts` (`id_account`),
+  ADD CONSTRAINT `pareja_rechequeadores_embaladores_ibfk_3` FOREIGN KEY (`id_embalador`) REFERENCES `empleados` (`id`);
 
 --
 -- Filtros para la tabla `pedidos`

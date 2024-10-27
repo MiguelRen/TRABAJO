@@ -59,7 +59,7 @@ const extraer_estadisticas = async (form) => {
     is_loader = true;
    if(is_loader) $loader.classList.remove("hidden");
     try {
-        const data = await app('http://localhost/vitalclinic3/controllers/almacen/estadisticas/fallas_despachador.php?extraer_pedidos=1','POST',form);
+        const data = await app('http://192.168.0.164/vitalclinic/controllers/almacen/estadisticas/fallas_despachador.php?extraer_pedidos=1','POST',form);
         is_loader= false;
         if(!is_loader) $loader.classList.add("hidden");
        mostrar_datos_tabla(data.data)

@@ -53,7 +53,7 @@
             FROM `pedidos`
             LEFT JOIN pedidos_d_r_e on pedidos.id_pedido=pedidos_d_r_e.id_pedido 
             INNER JOIN empleados on pedidos_d_r_e.id_despachador=empleados.id 
-            WHERE fecha BETWEEN '2024-10-15 14:42:00' AND  '2024-10-21 14:42:00' ORDER BY numero_pedido";
+            WHERE fecha BETWEEN '$fechaI' AND  '$fechaF' ORDER BY numero_pedido";
 
             $result = $this->conn->query($sql);
             // Devolver los resultados como un array JSON
@@ -68,5 +68,3 @@
             return $data;
         }
     }
-
-    //578715772 445577

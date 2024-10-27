@@ -2,7 +2,13 @@
 
     include "../models/auth_model.php";
     include "./control_de_sessiones.php";
-
+    
+   // Hanilitar CORS solo para solicitudes des http://webvital
+ //  header("Access-Control-Allow-Origin: http://webvital");
+  //Permitir solo solicitudes POST, GET, DELETE, PUT
+ // header("Access-Control-Allow-Methods: POST, GET, DELETE, PUT");
+  // Permitir ciertos encabezados
+ // header("Access-control-Allow-headers: Content-type");
 class Auth{
 
     public function login($username="",$password=""){

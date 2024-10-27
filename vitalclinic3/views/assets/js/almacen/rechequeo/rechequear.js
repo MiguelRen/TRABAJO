@@ -14,10 +14,9 @@ let pp = undefined;
 let em = undefined;
 let is_loader = false;
 
-
 const extraer_embalador_asignado = async () => {
     try {
-        const data = await app('http://localhost/vitalclinic3/controllers/almacen/rechequeo/rechequear.php?extraer_embalador_asignado=1');
+        const data = await app('http://192.168.0.164/vitalclinic/controllers/almacen/rechequeo/rechequear.php?extraer_embalador_asignado=1');
         embaladorAsignado = data[0];
         console.log(embaladorAsignado)
     } catch (error) {
@@ -52,7 +51,7 @@ const mostrar_empleados = (data_empleados) => {
 
 const extraer_data_empleados = async () => {
     try {
-        const data_empleados = await app('http://localhost/vitalclinic3/controllers/users/empleados.php?extraer_empleados=1');
+        const data_empleados = await app('http://192.168.0.164/vitalclinic/controllers/users/empleados.php?extraer_empleados=1');
         mostrar_empleados(data_empleados)
     } catch (error) {
         console.log(error)
@@ -60,44 +59,43 @@ const extraer_data_empleados = async () => {
 };
 
 const rechequear_pedido = async(form_data) => {
-    is_loader = true;
-    if(is_loader) $loader.classList.remove("hidden");
-    try {
-        const res = await app('http://localhost/vitalclinic3/controllers/almacen/rechequeo/rechequear.php?rechequear=1','POST',form_data);
+	 is_loader = true;
+    if(is_loader) $loader.classList.remove("hidden");   
+ try {
+        const res = await app('http://192.168.0.164/vitalclinic/controllers/almacen/rechequeo/rechequear.php?rechequear=1','POST',form_data);
         if(res.data.length > 0){
-            is_loader = true;
-            if(is_loader) $loader.classList.add("hidden");
-            alert('Registro exitoso');
+	 is_loader = true;
+            if(is_loader) $loader.classList.add("hidden");           
+ alert('Registro exitoso');
              d.querySelector("#form_parts").innerHTML = "";
              d.querySelector('#container_parts').classList.add('hidden');
              $embalador_seleccionado.value = '';
              $empleado.selectedIndex = 0;
              d.querySelector('#cod_pedido').value=''
              embaladorSeleccionado = undefined;
-             embaladorAsignado = undefined;
+             
           }else{
-            is_loader=false;
-            $loader.classList.add("hidden"); 
-            alert(`${res.error}`)
+		 is_loader = true;
+            if(is_loader) $loader.classList.add("hidden");
+              alert(`${res.error}`)
           }
     } catch (error) {
-        is_loader=false;
+	is_loader=false;
         $loader.classList.add("hidden"); 
         console.log(error)
     }
 }
 
 const extraer_partes_pedidos = async(form_data) => {
-    is_loader = true;
-    if(is_loader) $loader.classList.remove("hidden");
-
-    try {
-        const data_partes_pedido = await app('http://localhost/vitalclinic3/controllers/almacen/rechequeo/rechequear.php?extraer_partes_pedido=1','POST',form_data);
-        is_loader=false;
-        $loader.classList.add("hidden"); 
-        return data_partes_pedido;
+is_loader = true;
+    if(is_loader) $loader.classList.remove("hidden");   
+ try {
+        const data_partes_pedido = await app('http://192.168.0.164/vitalclinic/controllers/almacen/rechequeo/rechequear.php?extraer_partes_pedido=1','POST',form_data);
+	is_loader=false;
+        $loader.classList.add("hidden");        
+ return data_partes_pedido;
     } catch (error) {
-        is_loader=false;
+	is_loader=false;
         $loader.classList.add("hidden"); 
         console.log(error)
     }
@@ -128,7 +126,7 @@ const get_info = async () =>{
   
     if(!is_loader) $loader.classList.add("hidden");
   
-    // console.log(is_loader)
+    console.log(is_loader)
 }
 
 const mostrar_partes_pedidos = (data_parts) => {
@@ -190,41 +188,15 @@ const getDataForm = async (e) => {
     formData.append('num_pedido', numero_pedido);
 
     const partes_pedido = await extraer_partes_pedidos(formData);
-    // console.log(partes_pedido)
- 
+
     if(partes_pedido.length === 0){
         alert('Pedido no registrado')
         return;
     }
-    
-    try{
-
-        Object.entries(partes_pedido)
-        .forEach(((key,value) =>{
-            console.log(key,value);
-            
-        }))
-
-
-        partes_pedido.forEach((parte) => 
-            console.log(parte)
-
-        );
-        
-
-        
-
-        
-    }catch(error){
-        console.log(error);
-        
-    }
-
-        // console.log(partes_pedido)
-        // mostrar_partes_pedidos(partes_pedido);
+    console.log(partes_pedido)
+    mostrar_partes_pedidos(partes_pedido);
     return {partes_pedido, embalador, numero_pedido};
-    }
-
+}
 
 $embalador_asignado.addEventListener('click', e => {
     if(embaladorAsignado === undefined){
@@ -264,7 +236,7 @@ d.addEventListener('submit', async e =>{
             const form_data = new FormData();
             form_data.append('embalador', embalador.id_embalador);
             form_data.append('id_pedido_d_r_e[]', id_pedido_d_r_e);   
-            rechequear_pedido(form_data);
+            await rechequear_pedido(form_data);
             return; 
         }
     }
@@ -283,7 +255,7 @@ d.addEventListener('submit', async e =>{
         valueCheckbox.forEach(e => {
             form_data.append('id_pedido_d_r_e[]', e);
         })
-        rechequear_pedido(form_data);
+        await rechequear_pedido(form_data);
     }
 })
 

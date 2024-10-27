@@ -46,6 +46,12 @@
   </div>
 </div>
 
-<script src="http://localhost/vitalclinic3/views/assets/js/utilidades.js" type = "module"></script>
-<script src="http://localhost/vitalclinic3/views/assets/js/api.js" type="module"></script>
-<script src="http://localhost/vitalclinic3/views/assets/js/auth.js" type="module"></script>
+<?php 
+require_once "../../server_url/host.php";
+$val = "sdjkgfjhfgtsdds";
+if(isset($host)?var_dump($host): print_r ($val));
+?>
+
+<script src="<?php $host ?>/views/assets/js/utilidades.js" type="module"></script>
+<script src="<?php $host ?>/views/assets/js/api.js" type="module"></script>
+<script src="<?php $host ?>/vitalclinic3/views/assets/js/auth.js" type="module"></script>

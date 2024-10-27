@@ -150,11 +150,6 @@
             
         }
 
-        
-
-        public function extraer_detalles_pedidos(){
-
-        }
     }
 
     // Enrutador

@@ -1,5 +1,5 @@
 <?php 
-    include "controllers/control_privilegios.php";
+    include "./controllers/control_privilegios.php";
     $privilegio = "rechequear";
     $control_privilegios = new ControlPrivilegios();
     $acceso = $control_privilegios->verificar_privilegios($privilegio);
@@ -66,24 +66,23 @@
             </div>
         </div>
 
-        <div id="container_parts" class="w-[calc(50%-384px)] h-fit rounded-md flex flex-col gap-y-4 hidden">
+        <div id="container_parts" class="md:w-[calc(80%-384px)] lg:w-[calc(70%-384px)]  xl:w-[calc(50%-384px)] h-fit rounded-md flex flex-col gap-y-4 hidden">
             <div class="border-2 border-white bg-blue-500 rounded-md">
                 <div class="my-2">
                     <h2 class="text-center text-white font-medium">Seleccionar Partes del pedido a rechequear</h2>
                 </div>
                 <form action="" class="flex flex-col gap-y-2 px-2 mb-2 registrar_partes_pedido">
                     <div id="form_parts"></div>
-                    <input type="submit" value="registrar" class="hover:cursor-pointer">
+                    <input type="submit" value="registrar" class="border-2 border-gray-200 bg-blue-500 text-white rounded-md  hover:cursor-pointer hover:border-purple-500 ">
                 </form>
             </div>
         </div>
     </div>
-    
-    <div id="loader" class="w-full h-screen bg-transparent fixed top-0 hidden">
-        <div class="w-full h-screen flex flex-col justify-center items-center border-2 border-blue-500">
+	<div id="loader" class="w-full h-screen bg-transparent fixed top-0 hidden">
+         <div class="w-full h-screen flex flex-col justify-center items-center border-2 border-blue-500">
                 <span class="loader"></span>
-        </div>        
-    </div>
+         </div>        
+     </div>
 </div>
 
 <template id="template-item_form">
@@ -93,5 +92,5 @@
     </label>
 </template>
 
-<script src="http://localhost/vitalclinic3/views/assets/js/api.js" type="module"></script>
-<script src="http://localhost/vitalclinic3/views/assets/js/almacen/rechequeo/rechequear.js" type="module"></script>
+<script src="http://192.168.0.164/vitalclinic/views/assets/js/api.js"></script>
+<script src="http://192.168.0.164/vitalclinic/views/assets/js/almacen/rechequeo/rechequear.js" type="module"></script>

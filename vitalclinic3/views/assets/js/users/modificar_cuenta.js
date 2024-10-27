@@ -50,7 +50,7 @@ const mostrar_roles = (data_roles) => {
 
 const extraer_data_accounts = async () => {
     try {
-        data_accounts = await app('http://localhost/vitalclinic3/controllers/users/empleados.php?extraer_accounts=1');
+        data_accounts = await app('http://192.168.0.164/vitalclinic/controllers/users/empleados.php?extraer_accounts=1');
         mostrar_accounts(data_accounts)
     } catch (error) {
         console.log(error)
@@ -59,7 +59,7 @@ const extraer_data_accounts = async () => {
 
 const extraer_roles = async() => {
     try {
-        const data_roles = await app('http://localhost/vitalclinic3/controllers/users/empleados.php?extraer_roles=1');
+        const data_roles = await app('http://192.168.0.164/vitalclinic/controllers/users/empleados.php?extraer_roles=1');
         mostrar_roles(data_roles);
     } catch (error) {
         console.log(error)
@@ -76,7 +76,7 @@ const limpiarformmulario = () => {
 
 const modifica_account = async(form_data) => {
     try {
-        const res = await app('http://localhost/vitalclinic3/controllers/users/empleados.php?modificar_account=1','POST', form_data);
+        const res = await app('http://192.168.0.164/vitalclinic/controllers/users/empleados.php?modificar_account=1','POST', form_data);
           if(res.data.length > 0){
               alert('Modificación exitosa');
               limpiarformmulario();
@@ -98,7 +98,15 @@ $account.addEventListener('change', e => {
         d.querySelector('#username').value = data_account[0].username;
         d.querySelector('#password').value = data_account[0].password;
         d.querySelector('#id').value = data_account[0].id_account;
-        d.querySelector('#role').selectedIndex = data_account[0].role_id;
+        //Posicionamos cada uno de los select en el valor correspondiente con respecto a los despachadores del pedido
+       
+        for (let i = 0; i < $role.options.length; i++) {
+            if ($role.options[i].value == data_account[0].role_id) {
+                $role.selectedIndex = i;
+                break;
+            }
+        } 
+       
         d.querySelector('#status').selectedIndex = data_account[0].status;
     }else{
         limpiarformmulario();
@@ -106,12 +114,12 @@ $account.addEventListener('change', e => {
 
 });
 
-d.addEventListener('DOMContentLoaded', e=> {
-    extraer_data_accounts();
-    extraer_roles();
+d.addEventListener('DOMContentLoaded', async e=> {
+    await extraer_data_accounts();
+    await extraer_roles();
 });
 
-d.addEventListener('submit', e => {
+d.addEventListener('submit', async e => {
     e.preventDefault();
 
     const username = d.querySelector('#username').value;
@@ -157,5 +165,5 @@ d.addEventListener('submit', e => {
     formdata.append('role', role);
     formdata.append('status', status);
 
-    modifica_account(formdata)
+    await modifica_account(formdata)
 });

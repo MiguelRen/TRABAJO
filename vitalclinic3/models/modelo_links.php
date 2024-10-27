@@ -4,7 +4,8 @@
 
        private $lista_links_permitidos = [
             "inicio" => "inicio",
-            "login" => "auth/index" ,
+            "login" => "auth/index",
+            "cerrar_session" => "auth/cerrar_session",
             "registrar_empleado" => "users/registrar_empleado",
             "modificar_empleado" => "users/modificar_empleado",
             "registrar_cuenta" => "users/registrar_cuenta",
@@ -19,12 +20,13 @@
             "rechequear_pedido" => "almacen/rechequeo/rechequear",
             "registrar_fallas" => "almacen/fallas/registrar_fallas",
             "eliminar_fallas" => "almacen/fallas/eliminar_fallas",
-            "cerrar_session" => "cerrar_session",
-            "pedidos_por_fecha" => "almacen/estadisticas/pedidos_por_fecha",
-            "pedidos_por_despachador" => "almacen/estadisticas/pedidos_por_despachador",
-            "mejor_despachador" => "almacen/estadisticas/mejor_despachador",
-            "fallas_despachador" => "almacen/estadisticas/fallas_despachador"
-        ];
+            "total_pedidos" => "almacen/estadisticas/total_pedidos",
+            "asignar_mesa" => "almacen/mesa_rechequeadores/modificar_mesa",
+	        "pedidos_por_fecha" => "almacen/estadisticas/pedidos_por_fecha",
+	        "mejor_despachador" => "almacen/estadisticas/mejor_despachador",
+            "fallas_despachador" => "almacen/estadisticas/fallas_despachador",
+            "fallas_detectadas_rechequeador" => "almacen/estadisticas/fallas_detectadas_rechequeador"       
+ ];
 
         public function checkLinkExistence($name_link){
             $exist_link = array_key_exists($name_link, $this->lista_links_permitidos) 
