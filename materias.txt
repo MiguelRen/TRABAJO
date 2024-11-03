@@ -1,0 +1,54 @@
+Basándome en la información proporcionada, aquí está un resumen de las materias típicas que se enseñan en la carrera de Ingeniería de Software en Harvard, junto con algunas referencias bibliográficas relevantes:
+
+Introducción al Pensamiento Informático (Great Ideas in Computer Science)
+COMPSCI 1
+Bibliografía:
+"Algoritmos" de Robert Sedgewick y Kevin Wayne
+"Introducción al pensamiento informático" de Harry Lewis y Andrew Plesser
+Matemáticas Discretas para la Ciencia de la Computación
+COMPSCI 20
+Bibliografía:
+"Matemáticas Discretas y su Aplicación en la Ciencia de la Computación" de Kenneth Rosen
+"Principios de la Ciencia de la Computación" de Charles H. Papadimitriou y Kenneth Steiglitz
+Diseño de Software
+COMPSCI 131
+Bibliografía:
+"Principles and Practices of Software Engineering" de Alan M. Davis
+"Software Engineering: A Practitioner's Approach" de Roger S. Pressman y Bruce R. Maxim
+Programación en Python
+COMPSCI 101
+Bibliografía:
+"Python Crash Course" de Eric Matthes
+"Automate the Boring Stuff with Python" de Al Sweigart
+Sistemas Informáticos
+COMPSCI 120
+Bibliografía:
+"Computer Organization and Design: The Hardware/Software Interface" de David A. Patterson y John L. Hennessy
+"Modern Operating Systems" de Andrew S. Tanenbaum y Herbert Bos
+Ciencia de la Computación Teórica
+COMPSCI 121
+Bibliografía:
+"Introduction to Algorithms" de Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest y Clifford Stein
+"Computational Complexity: A Modern Approach" de Sanjeev Arora y Boaz Barak
+Ingeniería de Software
+COMPSCI 132
+Bibliografía:
+"Software Engineering: An Introduction to Building Application-Scale Software" de Ian Sommerville
+"Clean Architecture: A Craftsman's Guide to Software Structure and Design" de Robert C. Martin
+Procesamiento de Lenguaje Natural
+COMPSCI 140
+Bibliografía:
+"Speech and Language Processing" de Dan Jurafsky y James H. Martin
+"Natural Language Processing (almost) from Scratch" de Collobert et al.
+Seguridad Informática
+COMPSCI 150
+Bibliografía:
+"Computer Security: Art and Science" de Matt Bishop
+"Security in Computing" de Charles P. Pfleeger y Shari Lawrence Pfleeger
+Práctica Final de Ingeniería de Software
+CSCI E-599
+Bibliografía variada según el proyecto específico
+Es importante notar que las materias y bibliografías pueden cambiar con el tiempo,
+ y los profesores suelen adaptar el material a sus preferencias y a lo que consideran
+ más relevante para el campo actual. Además, Harvard ofrece muchas oportunidades 
+para profundizar en temas específicos a través de proyectos y seminarios adicionales.

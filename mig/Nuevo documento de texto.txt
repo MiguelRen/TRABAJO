@@ -1,0 +1,242 @@
+SET CENTURY ON
+*SET DATE TO british
+SET DATASESSION TO
+** && AD: 04-01-2003  Se evaluo modificar el reporte, para que en caso de que un cliente reporte una falla
+** determinar porque se realizo el cambio...
+** Al día de hoy el reporte cuando se pide la comisión fija tiene dos casos descontar DXPP o NO
+** Si no se decuenta no hay problema
+** Si se descuenta estaba colocando como neto ya el monto del cobro.
+** pero no mostraba la nota de credito  en ninguno de los dos caso. (Al parecer para que la suma cuadrara.)
+** Se va ha modificar el reporte para que las muestre y descuente según sea el caso. ET esta al tanto.
+** El reporte antes de la midificación se llama comi_cobold.* para que si algún cliente lo necesita lo puedan recuperar.
+
+PUBLIC tval, tdpp, lexitfun
+lexitfun=.F.
+
+tnom_rep = UPPER(ALLTRIM(tnombre_report))
+
+a=Fact_cheques_dev(0)
+IF lexitfun
+	=MESSAGEBOX("No puede ejecutar este reporte."+CHR(13)+"Se debe actualizar la versión con un ejecutable posterior al 14-11-2002",16,business_loc)
+	RETURN .F.
+ENDIF
+
+DO CASE
+CASE ALLTRIM(tdesde(3))=="Por Puntos"
+	tcampo = "comis2"
+	tval   = .F.
+CASE ALLTRIM(tdesde(3))=="Por Rentabilidad"
+	tcampo = "comis3"
+	tval   = .F.
+CASE ALLTRIM(tdesde(3))=="Por Porcentaje Calculado"
+	tcampo = "comis1"
+	tval   = .F.
+CASE ALLTRIM(tdesde(3))=="Por Línea de Artículo"
+	tcampo = "comis6"
+	tval   = .F.
+CASE ALLTRIM(tdesde(3))=="Por niveles de Precios"
+	tcampo = "comis5"
+	tval   = .F.
+OTHERWISE
+	tcampo = "comis1"
+	tval   = .T.
+	tdesde(3)="Por Porcentaje Fijo"
+ENDCASE
+
+DO tit_rep WITH 8
+
+IF tdesde(4) = 'Si'
+	IF !tval
+		= MESSAGEBOX("El filtro de Descontar por DxPP solo aplica para el tipo de comisión por Porcentaje Fijo",64,"Profit Plus")
+		RETURN .F.
+	ENDIF
+	tdpp = .T.
+ELSE
+	tdpp = .F.
+ENDIF
+IF EMPTY(tdesde(8))
+	tdesde(8) = "USD"
+
+ENDIF
+PUBLIC tsaldo
+TCOSUCU="COBROS.CO_SUCU='"+report_sucu+"'"
+TDOSUCU="docum_cc.CO_SUCU='"+report_sucu+"'"
+IF EMPTY(ALLTRIM(report_sucu))
+	IF SERVERSQL
+		TCOSUCU='1=1'
+		TDOSUCU='1=1'
+	ELSE
+		TCOSUCU='.T.'
+		TDOSUCU='.T.'
+	ENDIF
+ENDIF
+LOCAL llcontinue
+llcontinue = .T.
+
+ttabla = "docum_cc."
+tfrom  = "docum_cc"
+ttabla1 = "cobros."
+tfrom2  = "dev_cli"
+ttabla2 = "dev_cli."
+
+tfrom1  = "cobros"
+ttabla_reng = "reng_cob."
+tfrom_reng = "reng_cob"
+ttabla_rengd = "reng_dev"
+*****************************  Conexion *****************************************
+IF SERVERSQL
+	tconnect = SQLCONECTAR()
+	IF  mensaje_sql(tconnect,0) <= 0
+		RETURN .F.
+	ENDIF
+ENDIF
+
+******************************************************************************
+
+IF SERVERSQL
+*   JNP 25/05/05
+*   se cambio la variable tca13 para que no calculara comisiones sobre montos retenidos de IVA
+*   JNP 24/11/05
+*   regrese la variable tca13 original para que SI calculara comisiones sobre montos retenidos de IVA
+
+*tdp = IIF(tdpp,'1','0')
+	
+	tdp    =  '0'
+	tca11  = "&ttabla_reng.tp_doc_cob AS tipo, &ttabla_reng.cob_num AS numero, &ttabla.fec_emis AS fecha, &ttabla1.co_cli AS codigoc, &ttabla.co_ven AS codigov, &ttabla1.monto AS tmonto_cob, "
+	tca12  = "cast(&ttabla.aux02 as smalldatetime) as tfecha_ent, dbo.dias_ventas(&ttabla.nro_doc) as dias,&ttabla.fec_venc as tfecha_venc,&ttabla1.recibo,"+;
+			" &ttabla1.fec_cob AS tfecha_cob, "
+		tca13  = "case when reng_cob.mont_cob <> 0 then case when &ttabla_reng.tp_doc_cob='CHEQ' "+;
+		"then (&ttabla_reng.neto-(case when ?tdp=1 then &ttabla_reng.monto_dppago else 0 end)-((&ttabla_reng.neto/&ttabla_reng.mont_cob)*&ttabla_reng.imp_pago)) "+;
+		"else case when &ttabla.tipo_doc='N/CR' then ((&ttabla_reng.neto-&ttabla.mon_ilc)-(((&ttabla_reng.neto)/&ttabla_reng.mont_cob)*&ttabla_reng.imp_pago)) "+;
+		"else ((&ttabla_reng.neto-(case when &ttabla2.mon_ilc is null then 0 else &ttabla2.mon_ilc end))-(case when ?tdp=1 then &ttabla_reng.monto_dppago else 0 end)"+;
+		"-(((&ttabla_reng.neto-case when &ttabla2.mon_ilc is null then 0 else &ttabla2.mon_ilc end)/(&ttabla_reng.mont_cob-&ttabla.mon_ilc))*&ttabla_reng.imp_pago)) end end"+;
+		"* case when &ttabla_reng.tp_doc_cob='N/DB' "
+	
+	tca14  = "OR &ttabla_reng.tp_doc_cob='GIRO' OR &ttabla_reng.tp_doc_cob= 'CHEQ' OR &ttabla_reng.tp_doc_cob= 'FACT' OR &ttabla_reng.tp_doc_cob= 'AJPA' then 1 else -1 end * case when &ttabla_reng.tp_doc_cob='ADEL' then 0 else 1 end else 0.00 end AS monto1, "
+
+	tca15  = "reng_tip.tip_cob,reng_tip.num_doc,reng_tip.cod_caja,reng_tip.fec_cheq,reng_tip.mont_doc,CONVERT(char(10),&ttabla_reng.doc_num) as doc_num, vendedor.ven_des AS descripv,"+;
+		" clientes.cli_des AS descripc, &ttabla_reng.&tcampo * case when &ttabla_reng.tp_doc_cob='N/DB' "+;
+		"OR &ttabla_reng.tp_doc_cob='GIRO' OR &ttabla_reng.tp_doc_cob= 'CHEQ' OR &ttabla_reng.tp_doc_cob= 'FACT' then 1 else -1 end AS comis, vendedor.comision AS comi_ven1, vendedor.comisionv AS comi_ven2, "
+	tca16  = "case when reng_cob.mont_cob <> 0 then case when &ttabla_reng.tp_doc_cob ='CHEQ' then (&ttabla_reng.neto-(case when ?tdp=1 then &ttabla_reng.monto_dppago else 0 end)) else ((&ttabla_reng.neto-(case when ?tdp=1 then &ttabla_reng.monto_dppago else 0 end))"+;
+		"-(&ttabla_reng.isv*(&ttabla_reng.neto-(case when ?tdp=1 then &ttabla_reng.monto_dppago else 0 end))/&ttabla_reng.mont_cob))  end "
+
+	tca17  = "* case when &ttabla_reng.tp_doc_cob='N/DB' OR &ttabla_reng.tp_doc_cob='GIRO' OR &ttabla_reng.tp_doc_cob= 'CHEQ' OR &ttabla_reng.tp_doc_cob= 'FACT' then 1 else -1 end * "
+	tca18  = "(vendedor.comision/100) * case when &ttabla_reng.tp_doc_cob='ADEL' then 0 else 1 end else 0.00 end AS comis21, &ttabla_reng.reng_num, 0 AS tip, &ttabla.fec_emis, "
+	tca19  = "case when reng_cob.mont_cob <> 0 then case when &ttabla_reng.tp_doc_cob='CHEQ' then &ttabla_reng.neto else (&ttabla_reng.neto-(&ttabla_reng.isv*&ttabla_reng.neto)/&ttabla_reng.mont_cob) end * case when &ttabla_reng.tp_doc_cob='N/DB' "
+	tca110 = "OR &ttabla_reng.tp_doc_cob='GIRO' OR &ttabla_reng.tp_doc_cob= 'CHEQ' OR &ttabla_reng.tp_doc_cob= 'FACT' then 1 else -1 end * case when &ttabla_reng.tp_doc_cob='ADEL' then 0 else 1 end else 0.00 end AS monto2, "+;
+		" &ttabla.mon_ilc, &ttabla.monto_net,&ttabla.aut, &ttabla_reng.reng_ncr,&ttabla_reng.ret_iva,&ttabla.nro_orig, &ttabla.tipo as tipoimp, &ttabla.co_sucu, &ttabla.monto_imp, &ttabla.monto_bru,&ttabla2.mon_ilc as dmon_ilc,&ttabla1.tasa,"
+	tca111 = " case when &ttabla1.moneda = 'BS' then dbo.valor_moneda(?tdesde(8),&ttabla_reng.fec_emis) else dbo.valor_moneda(?tdesde(8),reng_tip.fec_cheq) end as tasamov, ROUND(&ttabla_reng.porc_desc,0) as dpp "
+	tfr11  = "vendedor,clientes, reng_tip,&tfrom, &tfrom_reng LEFT JOIN &tfrom1 ON &ttabla_reng.cob_num = &ttabla1.cob_num LEFT JOIN dbo.dev_cli ON dbo.cobros.cob_num = dbo.dev_cli.num_cob"
+	twh11  = " &ttabla.co_ven = vendedor.co_ven and reng_tip.cob_num = cobros.cob_num AND &ttabla1.anulado=0 AND &ttabla.anulado=0 AND (&ttabla_reng.doc_num = &ttabla.nro_doc AND &ttabla_reng.tp_doc_cob=&ttabla.tipo_doc) AND &ttabla1.co_cli = clientes.co_cli AND &TCOSUCU  "
+	twh12  = "AND not((&ttabla.tipo_doc='AJNM' and &ttabla.campo8 = 'IVA') or &ttabla.tipo_doc='AJPM' or &ttabla.tipo_doc= 'ISLR')AND &ttabla1.fec_cob  BETWEEN ?tdesde[2] AND ?thasta[2] "+;
+			" AND &ttabla1.co_ven in (select co_ven from vendedor where co_ven between ?tdesde(1) and ?thasta(1) OR rtrim(ltrim(campo2)) between ?tdesde(1) and ?thasta(1))"
+	twh13  = " AND clientes.tipo between ?tdesde(5) and ?thasta(5) and &ttabla1.cob_num between ?tdesde(6) and ?thasta(6) and clientes.co_zon between ?tdesde(7) and ?thasta(7) "
+
+
+	tca21 = "&ttabla.tipo_doc AS tipo, &ttabla.nro_doc AS numero,&ttabla.fec_emis AS fecha, &ttabla.co_cli AS codigoc, &ttabla.co_ven AS codigov, case when &ttabla.tipo='6' then  (&ttabla.monto_net-&ttabla.monto_imp-&ttabla.monto_otr)"+;
+		" else &ttabla.monto_net end *-1 AS tmonto_cob, "
+	tca22 = "cast(&ttabla.aux02 as smalldatetime) as tfecha_ent, dbo.dias_ventas(&ttabla.nro_doc) as dias,&ttabla.fec_venc as tfecha_venc, '' as recibo, &ttabla.fec_venc AS tfecha_cob, "
+	tca23 = "&ttabla.monto_net * -1 AS monto1, '' as tip_cob,'0' as num_doc,'' as cod_caja,docum_cc.fec_emis as fec_cheq,0 as mont_doc,"+;
+		"&ttabla.nro_che AS doc_num, vendedor.ven_des AS descripv, clientes.cli_des AS descripc, &ttabla.&tcampo * -1 AS comis, vendedor.comision * -1 AS comi_ven1, vendedor.comisionv * -1 AS comi_ven2, "
+	tca24 = "&ttabla.monto_net * -1 * (vendedor.comision/100) AS comis21, 000001 as reng_num , 1 AS tip, &ttabla.fec_emis, &ttabla.monto_net * -1 AS monto2, "+;
+		"&ttabla.mon_ilc, &ttabla.monto_net,&ttabla.aut, 0 as reng_ncr, 0 as ret_iva,&ttabla.nro_orig, &ttabla.tipo as tipoimp, &ttabla.co_sucu, &ttabla.monto_imp,"
+	tca25 =	" &ttabla.monto_bru,0 as dmon_ilc,&ttabla.tasa,dbo.valor_moneda(?tdesde(8),&ttabla.fec_emis) as tasamov,0 as dpp "
+	tfr21 = " clientes LEFT JOIN &tfrom RIGHT JOIN vendedor ON &ttabla.co_ven = vendedor.co_ven ON &ttabla.co_cli = clientes.co_cli "
+	twh21 = " &ttabla.anulado=0 AND &ttabla.tipo_doc = 'CHEQ' AND &ttabla.fec_emis BETWEEN ?tdesde[2] AND ?thasta[2] "+;
+			" AND &ttabla.co_ven in (select co_ven from vendedor where co_ven between ?tdesde(1) and ?thasta(1) OR rtrim(ltrim(campo2)) between ?tdesde(1) and ?thasta(1))"+;
+			" AND &TDOSUCU  "
+	twh22 =	" AND clientes.tipo between ?tdesde(5) and ?thasta(5) and clientes.co_zon between ?tdesde(7) and ?thasta(7) "
+	tor1 = "5, 9, 2, 19, 18 "
+	tresult = sqlexec(tconnect,"select "+tca11+tca12+tca13+tca14+tca15+tca16+tca17+tca18+tca19+tca110+tca111+" from "+tfr11+" WHERE "+twh11+twh12+twh13+" union all select "+tca21+tca22+tca23+tca24+tca25+" from "+tfr21+" where "+twh21+"order by "+tor1,'vreportes')
+	IF mensaje_sql(tresult,1)<=0
+		RETURN .F.
+	ENDIF
+	cadeven = "select co_ven,ven_Des,campo5,campo6,campo7,campo8 from vendedor where "+;
+	" co_ven between ?tdesde(1) and ?thasta(1) OR rtrim(ltrim(campo2)) between ?tdesde(1) and ?thasta(1) "
+	tresult1=SQLEXEC(tconnect,cadeven,'Vvendedor')
+	IF mensaje_sql(tresult1,1)<=0
+		RETURN .F.
+	ENDIF
+	**SELECT v.*,v1.campo5,v1.campo6,v1.campo7,v1.campo8 FROM vreportes v INNER JOIN vvendedor v1 ON v1.co_ven = v.codigov INTO CURSOR vreportes
+
+** ini  HZ: 15/01/2016 12:15pm  
+**  // Se comento el codigo anterior por que en el reporte se reflejaba un monto base errado en los CHEQUES DEVUELTOS //
+**  // Y se activo nuevamente este código que si refleja bien el monto base o bruto del cheque devuelto //
+	SELECT vreportes.*, IIF(vreportes.tipo =="CHEQ",;
+		IIF(vreportes.tipoimp="6",(IIF(vreportes.monto1<0,1,1)*vreportes.monto_NET/((100+Fact_cheques_dev(vreportes.nro_orig))/100)),IIF(vreportes.monto_imp=0,IIF((buscarisv(vreportes.tipoimp,vreportes.fec_emis,"V")=0),;
+		vreportes.monto_bru,(vreportes.monto_net/((100+Fact_cheques_dev(vreportes.nro_orig))/100))),(IIF(vreportes.monto_NET<0,-1,1)*(vreportes.monto_NET-vreportes.monto_imp))/((100+Fact_cheques_dev(vreportes.nro_orig))/100)))*IIF(tip=1,-1,1),;
+		IIF(vreportes.tipo=="AJNA" OR vreportes.tipo=="AJNM",(vreportes.monto1/((100+Fact_cheques_dev(vreportes.nro_orig))/100)),vreportes.monto1))*IIF(vreportes.tmonto_cob=0,1,(vreportes.mont_doc/vreportes.tmonto_cob)) AS monto,;
+		IIF (vreportes.tipo =="CHEQ",;
+		IIF(vreportes.tipoimp="6",vreportes.comis21/((100+Fact_cheques_dev(vreportes.nro_orig))/100),(vreportes.monto_net/((100+buscarisv(vreportes.tipoimp,vreportes.fec_emis,"V"))/100)))*-1,;
+		vreportes.comis21) AS comis2,;
+		IIF(vreportes.monto2 <> 0,((vreportes.comis*100)/ vreportes.monto2) * IIF(tip=1,-1,1),0.00) AS comis3;
+		FROM vreportes;
+		ORDER BY 5, 9, 2, 19, 18;
+		INTO CURSOR vreportes
+		
+	
+** fin HZ//
+
+ELSE
+**FOX
+
+ENDIF
+
+IF SERVERSQL
+**SELECT * FROM vreportes
+	SELECT tipo, numero, fecha, codigoc, codigov, tmonto_cob, TTOD(fecha) as tfecha_emis,TTOD(tfecha_ent) as tfecha_ent,dias,;
+		TTOD(tfecha_venc) as tfecha_venc, TTOD(tfecha_cob) as tfecha_cob,;
+		tip_cob,num_doc,cod_caja,TTOD(fec_cheq) as fec_cheq,recibo as recibo,(TTOD(fec_cheq)-TTOD(tfecha_venc)) as diacob,;
+		IIF(tmonto_cob<0, monto,IIF(tmonto_cob>0,monto1*(mont_doc/tmonto_cob),IIF(ret_iva=0,monto1,tcero))) AS monto, ;
+		IIF(tmonto_cob<0, monto,monto1) AS monto2, monto_net,monto_imp,doc_num, descripc, descripv, comis,;
+		IIF(monto_net <> 0,(IIF(tmonto_cob<0, monto,IIF(tmonto_cob>0,monto1*IIF(tmonto_cob=0,1,(mont_doc/tmonto_cob)),monto1));
+		-((tmonto_cob*mon_ilc)/monto_net)),0)*(comi_ven1/100) *IIF(tip=1,-1,1) AS comis2,;
+		IIF(monto_net <> 0,comis3,0), comi_ven1, comi_ven2,tip, aut, reng_ncr,co_sucu, tasamov,tasa,dpp;
+		FROM vreportes INTO CURSOR vreportes
+ENDIF
+	**=SI((M6-L6)<=0;4;SI(Y((M6-L6)>=1;  (M6-L6)<=15);2;SI(Y((M6-L6)>15; (M6-L6)<=30);1;SI((M6-L6)>90;0;0,5))))
+	**browse
+	SELECT vreportes
+	GO top
+	SCAN 
+		porc = 0
+		DO CASE
+			CASE (vreportes.diacob <= 0)
+				porc = val(vreportes.campo5)
+			CASE  (vreportes.diacob>0 AND vreportes.diacob<=15)
+				porc = VAL(vreportes.campo6)
+			CASE (vreportes.diacob>15 AND vreportes.diacob<=30)
+				porc = VAL(vreportes.campo7)
+			CASE (vreportes.diacob>30 and vreportes.diacob<=90)
+				porc = VAL(vreportes.campo8)
+			OTHERWISE
+				porc = 0
+		ENDCASE
+		REPLACE comis WITH porc IN 'vreportes'
+**		SELECT vreportes.*, IIF(vreportes.diacob<=0,vreportes.campo5,iif(vreportes.diacob>0 AND vreportes.diacob<=15,vreportes.campo6,;
+	**	IIF(vreportes.diacob>15 AND vreportes.diacob<=30,vreportes.campo7,IIF(vreportes.diacob>30 and vreportes.diacob<=90,0,0)))) as porc_comi;
+	 **FROM vreportes
+
+	ENDSCAN
+	
+SELECT *,IIF((tipo='FACT' OR tipo='N/CR' OR tipo='N/DB'),IIF(tipo='FACT','FAC',IIF(tipo='N/CR','NCR','NDB')),'XXX') AS n_SERIE FROM vreportes INTO CURSOR vreportes
+
+llcontinue = .T.
+IF !mensaje_report('vreportes')
+	llcontinue = .F.
+ELSE
+*!*		IF TYPE('trep_excel')='L' AND trep_excel
+*!*			SELECT ALLTRIM(codigov)+'/'+ALLTRIM(descripv) AS vendedor,IIF(tip=0,'Cobro    ','Cheq. Dev') ;
+*!*				AS Documento,numero AS numero,tfecha_cob AS fec_cob, tmonto_cob AS monto_doc, tipo AS tipo,tip_cob as formapag,;
+*!*				num_doc AS NUMDOC,cod_caja,fec_cheq, ;
+*!*				doc_num AS doc_num, ALLTRIM(codigoc)+'/'+ALLTRIM(descripc) AS Cliente, fecha AS fecha,;
+*!*				monto AS monto, IIF(tval,vreportes.comis2,IIF(!tdpp,vreportes.comis, vreportes.monto*vreportes.comis3)) AS comision;
+*!*				FROM vreportes INTO CURSOR vreportes
+*!*			SELECT * FROM vreportes ORDER BY vendedor,Documento,fec_cob,numero INTO CURSOR vreportes
+*!*			
+
+*!*			rep_excel('vreportes',tnom_rep,.T.,'Vendedor','Tipo','Comision')
+*!*			llcontinue =  .F.
+*!*		ENDIF
+ENDIF
+RETURN llcontinue
