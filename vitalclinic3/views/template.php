@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,12 +7,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="views/assets/js/tailwind.config.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
-	<link rel= "stylesheet" href="views/css/loader.css"/>
+    <link rel="stylesheet" href="views/css/loader.css">
 </head>
 <body>
-    <div class="w-full h-screen bg-banner">
+    <div class="w-full h-screen bg-banner bg-cover">
         <?php 
-        
             $modules = new ControladorLinks();
             $modules->gestionar_redireccion();
         ?>

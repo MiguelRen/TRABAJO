@@ -1,5 +1,5 @@
 <?php 
-    include "./controllers/control_privilegios.php";
+    include "controllers/control_privilegios.php";
     $privilegio = "modificar_empleado";
     $control_privilegios = new ControlPrivilegios();
     $acceso = $control_privilegios->verificar_privilegios($privilegio);
@@ -91,6 +91,6 @@
     </div>
 </div>
 
-<script src="http://192.168.0.164/vitalclinic/views/assets/js/api.js"></script>
-<script src="http://192.168.0.164/vitalclinic/views/assets/js/utilidades.js"></script>
-<script src="http://192.168.0.164/vitalclinic/views/assets/js/users/modificar_empleado.js" type="module"></script>
+<script src="http://localhost/vitalclinic3/views/assets/js/api.js" type="module"></script>
+<script src="http://localhost/vitalclinic3/views/assets/js/utilidades.js" type="module"></script>
+<script src="http://localhost/vitalclinic3/views/assets/js/users/modificar_empleado.js" type="module"></script>

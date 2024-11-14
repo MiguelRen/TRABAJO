@@ -41,7 +41,7 @@ const mostrar_empleados = (data_empleados, input) => {
 
 const extraer_data_empleados = async () => {
     try {
-        data_empleados = await app('http://192.168.0.164/vitalclinic/controllers/users/empleados.php?extraer_empleados=1');
+        data_empleados = await app('http://localhost/vitalclinic3/controllers/users/empleados.php?extraer_empleados=1');
     } catch (error) {
         console.log(error)
     }
@@ -64,7 +64,7 @@ const mostrar_rutas = (data_rutas) => {
 
 const extraer_data_rutas = async () => {
     try {
-        const data_rutas = await app('http://192.168.0.164/vitalclinic/controllers/almacen/rutas/rutas.php?extraer_rutas=1');
+        const data_rutas = await app('http://localhost/vitalclinic3/controllers/almacen/rutas/rutas.php?extraer_rutas=1');
         mostrar_rutas(data_rutas)
     } catch (error) {
         console.log(error)
@@ -115,12 +115,7 @@ const mostrar_datos_tabla= async(data) => {
 
 const mostrar_data_form = (data) => {
     d.querySelector("#cant_unidades").value = data.cantidad_unidades;
-    for(let i = 0; $ruta.options.length; i++){
-	if($ruta.options[i].value == data.id_ruta){
-	   $ruta.selectedIndex = i;
-	   break;
-	}
-     }
+    d.querySelector("#ruta").selectedIndex = data.id_ruta;
     d.querySelector('#id_pedido').value = data.id_pedido;
 }
 
@@ -143,7 +138,7 @@ const extraer_datos_pedido = async(form_data) => {
     data_partes_pedido = [];
 
     try {
-        const data_pedido = await app('http://192.168.0.164/vitalclinic/controllers/almacen/pedidos/pedidos.php?extraer_data_pedido=1','POST',form_data);
+        const data_pedido = await app('http://localhost/vitalclinic3/controllers/almacen/pedidos/pedidos.php?extraer_data_pedido=1','POST',form_data);
         if(data_pedido.data.length > 0){
             format_data(data_pedido.data[0].partes_pedido);
             mostrar_datos_tabla(data_partes_pedido);
@@ -161,7 +156,7 @@ const extraer_datos_pedido = async(form_data) => {
 
 
 
-const getDataForm = async () => {
+const getDataForm = () => {
     const cod_pedido = d.querySelector('#cod_pedido');
     const ruta = d.querySelector('#ruta');
     const cant_unidades = d.querySelector('#cant_unidades');
@@ -195,13 +190,13 @@ const getDataForm = async () => {
       formData.append('id_parte_pedidos[]',item.id_pedido_d_r_e);
     })
     
-    await modificar_pedido(formData)
+    modificar_pedido(formData)
 }
 
 
 const modificar_pedido = async (form_data) => {
     try {
-        const res = await app('http://192.168.0.164/vitalclinic/controllers/almacen/pedidos/pedidos.php?modificar_pedido=1','POST',form_data);
+        const res = await app('http://localhost/vitalclinic3/controllers/almacen/pedidos/pedidos.php?modificar_pedido=1','POST',form_data);
         if(res.data.length > 0){
             alert('Modificación del pedido exitoso');
             limpiarformmulario();
@@ -248,14 +243,14 @@ d.addEventListener('change', e=> {
     }
 })
 
-d.addEventListener('click', async e => {
+d.addEventListener('click', e => {
     
     if(e.target.classList.contains('modificar_pedido')){
-      await getDataForm();
+      getDataForm();
     }
 });
 
-d.addEventListener('submit', async e=> {
+d.addEventListener('submit', e=> {
     e.preventDefault();
 
     const cod_pedido = e.target.cod_pedido.value;
@@ -268,7 +263,7 @@ d.addEventListener('submit', async e=> {
 
     const formdata = new FormData();
     formdata.append('cod_pedido',cod_pedido);
-    await extraer_datos_pedido(formdata);
+    extraer_datos_pedido(formdata);
 })
 
 d.addEventListener('DOMContentLoaded', async e => {

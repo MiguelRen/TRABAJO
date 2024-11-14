@@ -1,5 +1,5 @@
 import app from "./api.js";
- 
+
 const d = document;
 
 const limpiar_formulario = () => {
@@ -10,9 +10,8 @@ const limpiar_formulario = () => {
 
 const registrar_empleado = async(form_data) => {
   try {
-    const res = await app('http://192.168.0.164/vitalclinic/controllers/users/empleados.php?registrar_empleado=1','POST', form_data);
+    const res = await app('http://localhost/vitalclinic3/controllers/users/empleados.php?registrar_empleado=1','POST', form_data);
     if(res){
-      alert('Registro exitoso');
       limpiar_formulario();
     }
   } catch (error) {
@@ -20,7 +19,7 @@ const registrar_empleado = async(form_data) => {
   }
 }
 
-d.addEventListener('submit', async e => {
+d.addEventListener('submit', e => {
   e.preventDefault();
 
   const name = e.target.name.value;
@@ -34,5 +33,5 @@ d.addEventListener('submit', async e => {
   formData.append('lastname',lastname);
   formData.append('cedula', cedula);
 
-  await registrar_empleado(formData);
+  registrar_empleado(formData);
 });

@@ -11,7 +11,7 @@
 
         public function registrar_empleado($cedula = "", $name = "", $lastname = "") {
             // Consulta SQL
-            $sql = "INSERT INTO empleados (cedula, nombre, apellido,status,departamento) VALUES (?, ?, ?,1,0)";
+            $sql = "INSERT INTO empleados (cedula, nombre, apellido) VALUES (?, ?, ?)";
             
             $is_register = false;
     
@@ -39,7 +39,7 @@
         }
         
         public function extraer_datos_empleados(){
-            $sql = "SELECT * FROM empleados WHERE status=1 order by cedula";
+            $sql = "SELECT * FROM empleados WHERE status=1 order by id";
 
             $result = $this->conn->query($sql);
 

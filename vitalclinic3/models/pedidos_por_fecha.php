@@ -7,7 +7,7 @@ class PedidosPorFechaModel extends Connection{
     private $conn;
 
     public function __construct(){
-        $this->conn = $this->connect();
+        $this->conn = $this->getConnection();
     }
 
     public function obtener_rutas(){

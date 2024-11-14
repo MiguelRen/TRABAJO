@@ -1,7 +1,5 @@
 <?php 
-    include "./controllers/control_privilegios.php";
-    //incluyendo el la direccion de peticiones
-    include "./server_url/url";
+    include "controllers/control_privilegios.php";
     $privilegio = "registrar_ruta";
     $control_privilegios = new ControlPrivilegios();
     $acceso = $control_privilegios->verificar_privilegios($privilegio);
@@ -53,5 +51,5 @@
     </div>
 </div>
 
-<script src='<?php $url ?> /views/assets/js/api.js '></script>
-<script src="<?php $url ?>/assets/js/almacen/rutas/registrar_ruta.js" type="module"></script>
+<script src="http://localhost/vitalclinic3/views/assets/js/api.js" type="module"></script>
+<script src="http://localhost/vitalclinic3/views/assets/js/almacen/rutas/registrar_ruta.js" type="module"></script>

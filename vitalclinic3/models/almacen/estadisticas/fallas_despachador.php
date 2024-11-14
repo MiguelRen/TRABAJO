@@ -20,7 +20,7 @@
             INNER JOIN
                 empleados on fallas_despachador.despachador=empleados.id
             WHERE 
-                fecha BETWEEN '$fechaI' AND  '$fechaF'
+                fecha BETWEEN '2024-10-15 14:42:00' AND  '2024-10-21 14:42:00'
             GROUP BY 
                 empleados.id, empleados.nombre, empleados.apellido
             ORDER BY 
@@ -41,7 +41,7 @@
 
         public function extraer_total_fallas($fechaI="", $fechaF=""):array{
             $sql = "SELECT COUNT(fallas_despachador.id) as cantidad_total_fallas
-            WHERE fecha BETWEEN '$fechaI' AND  '$fechaF'
+            WHERE fecha BETWEEN '2024-10-15 14:42:00' AND  '2024-10-21 14:42:00'
             ORDER BY cantidad_fallas DESC";
 
             $result = $this->conn->query($sql);

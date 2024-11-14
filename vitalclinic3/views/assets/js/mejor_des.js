@@ -89,7 +89,7 @@ const mostarFallasEncontradasRechequeador = (data_rechequeadores,total_fallas) =
 
 const extract_statistic = async (form_data) => {
     try {
-        data_estadisticas = await app('http://192.168.0.164/registrar-pruebas/controllers/general_statistic.php?extract_statistic=1','POST',form_data);
+        data_estadisticas = await app('http://localhost/registrar-pruebas/controllers/general_statistic.php?extract_statistic=1','POST',form_data);
         mostrarMejorDespachador(data_estadisticas.estadisticas_despachador,data_estadisticas.total_cantidad_pedidos);
         mostrarFallasDespachador(data_estadisticas.fallas_despachador, data_estadisticas.total_fallas);
         mostarFallasEncontradasRechequeador(data_estadisticas.fallas_encontradas_rechequeador, data_estadisticas.total_fallas)

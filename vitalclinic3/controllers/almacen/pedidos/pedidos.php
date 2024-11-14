@@ -1,13 +1,20 @@
 <?php
     include "../../../models/almacen/pedidos/pedidos.php";
-	// Habilitar CORS solo para solicitudes desde http://webvital
-    // header("Access-Control-Allow-Origin: http://webvital");
-     // Permitir solo solicitudes POST y GET
-    // header("Access-Control-Allow-Methods: POST, GET,PUT,DELETE");
-     // Permitir ciertos encabezados
-    // header("Access-Control-Allow-Headers: Content-Type");
-     //Recibir las urls y decidir que accion ejecutar
+
     class PedidosController{
+        
+        private static $instance = null;
+        // Constructor privado para evitar instanciación externa
+        private function __construct() {}
+
+        // Método para obtener la instancia de la conexión
+        public static function getInstance() {
+            if (self::$instance == null) {
+                self::$instance = new PedidosController();
+            }
+            return self::$instance;
+        }
+
         public function registrar_pedido($cod_pedido="",$despachadores=[],$ruta="",$cant_unidades=""){
             //VALIDAR DATA
             $model = new PedidosModel();
@@ -47,8 +54,8 @@
         $despachadores = $_POST['despachadores'];
         $cant_unidades = $_POST['cant_unidades'];
     
-        $registro = new PedidosController();
-        $data = $registro->registrar_pedido($cod_pedido, $despachadores, $ruta, $cant_unidades);
+
+        $data = PedidosController::getInstance()->registrar_pedido($cod_pedido, $despachadores, $ruta, $cant_unidades);
         if($data[0] == true){
             $response = [
                 "data" => [$data[0]],
@@ -77,8 +84,7 @@
         $id_parte_pedidos = $_POST['id_parte_pedidos'];
         $cant_unidades = $_POST['cant_unidades'];
     
-        $controller = new PedidosController();
-        $data = $controller->modificar_pedido($id_pedido,$despachadores,$id_parte_pedidos,$ruta,$cant_unidades);
+        $data = PedidosController::getInstance()->modificar_pedido($id_pedido,$despachadores,$id_parte_pedidos,$ruta,$cant_unidades);
         if($data){
             $response = [
                 "data" => [$data],
@@ -97,8 +103,7 @@
     if(isset($_GET['extraer_data_pedido'])){
 
         $cod_pedido = $_POST['cod_pedido'];
-        $registro = new PedidosController();
-        $data = $registro->extraer_data_pedido($cod_pedido);
+        $data = PedidosController::getInstance()->extraer_data_pedido($cod_pedido);
 
         if(count($data) > 0){
             //Ordenar data
@@ -145,8 +150,7 @@
 
     if(isset($_GET['eliminar_pedido'])){
         $cod_pedido = $_POST['cod_pedido'];
-        $controller = new PedidosController();
-        $data = $controller->eliminar_pedido($cod_pedido);
+        $data = PedidosController::getInstance()->eliminar_pedido($cod_pedido);
         if($data){
             $response = [
                 "data" => [$data],
@@ -164,8 +168,7 @@
 
     if(isset($_GET['consultar_pedido'])){
         $numero_pedido = $_POST['numero_pedido'];
-        $controller = new PedidosController();
-        $data = $controller->consultar_pedido($numero_pedido);
+        $data = PedidosController::getInstance()->consultar_pedido($numero_pedido);
         if(count($data)>0){
             $response = [
                 "data" => [$data],
