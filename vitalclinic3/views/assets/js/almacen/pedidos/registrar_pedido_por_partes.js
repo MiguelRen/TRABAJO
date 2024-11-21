@@ -5,8 +5,9 @@ $fragment = d.createDocumentFragment(),
 $empleado = d.querySelector("#empleado"),
 $ruta = d.querySelector("#ruta"),
 $partes = d.querySelector("#partes"),
+$body_table = d.querySelector("#body_table"),
 $loader = d.querySelector("#loader"),
-$body_table = d.querySelector("#body_table");
+$registrar_pedido = d.querySelector("#registrar_pedido");
 
 let numero_partes_pedido = 0;
 let despachadores = [];
@@ -20,7 +21,7 @@ const mostrar_empleados = (data_empleados) => {
     const format_data = data_empleados.map( e => {
        const data = {
         id: e.id,
-        nombre: `${e.cedula} - ${e.nombre} ${e.apellido}`
+        nombre: `${e.nombre} ${e.apellido} - ${e.cedula}`
        }
 
        return {...data}
@@ -56,7 +57,7 @@ const mostrar_rutas = (data_rutas) => {
 
 const extraer_data_empleados = async () => {
     try {
-        const data_empleados = await app('http://192.168.0.164/vitalclinic/controllers/users/empleados.php?extraer_empleados=1');
+        const data_empleados = await app('http://localhost/vitalclinic3/controllers/users/empleados.php?extraer_empleados=1');
         mostrar_empleados(data_empleados)
     } catch (error) {
         console.log(error)
@@ -65,7 +66,7 @@ const extraer_data_empleados = async () => {
 
 const extraer_data_rutas = async () => {
     try {
-        const data_rutas = await app('http://192.168.0.164/vitalclinic/controllers/almacen/rutas/rutas.php?extraer_rutas=1');
+        const data_rutas = await app('http://localhost/vitalclinic3/controllers/almacen/rutas/rutas.php?extraer_rutas=1');
         mostrar_rutas(data_rutas)
     } catch (error) {
         console.log(error)
@@ -131,27 +132,28 @@ const mostrar_datos_tabla = (datos) => {
 }
 
 const registrar_pedido = async (form_data) => {
-is_loader=true;
-if(is_loader)$loader.classList.remove("hidden");  
+  is_loader = true;
+  if(is_loader) $loader.classList.remove("hidden");
 
-try {
-    const res = await app('http://192.168.0.164/vitalclinic/controllers/almacen/pedidos/pedidos.php?registrar_pedido=1','POST',form_data);
+  try {
+    const res = await app('http://localhost/vitalclinic3/controllers/almacen/pedidos/pedidos.php?registrar_pedido=1','POST',form_data);
     if(res.data.length > 0){
-	is_loader = false; 
-        if(!is_loader)$loader.classList.add("hidden");      
-        alert('Registro del pedido exitoso');
-        window.location='registrar_pedido_por_partes';
-    }else{
-	is_loader=false
+      
+      is_loader=false
       if(!is_loader) $loader.classList.add("hidden");
 
+      alert('Registro del pedido exitoso');
+      limpiarformmulario();
+    }else{
+        is_loader=false
+        if(!is_loader) $loader.classList.add("hidden");
         alert(`${res.error}`)
     }
   } catch (error) {
-	is_loader=false
-      if(!is_loader)$loader.classList.add("hidden");
-
-    console.log(error)
+    is_loader=false
+    if(!is_loader) $loader.classList.add("hidden");
+    $loader.classList.add("hidden"); 
+    console.log(error);
   }
 }
 
@@ -178,8 +180,6 @@ const limpiarformmulario = () => {
   $ruta.selectedIndex = 0;
   d.querySelector('#cant_unidades').value = "";
   $empleado.selectedIndex = 0;
-  despachadores = [];
-  numero_partes_pedido = 1;
 }
 
 $partes.addEventListener('change',  e=> {
@@ -266,8 +266,11 @@ d.addEventListener('click', async e => {
   }
 });
 
+
 d.addEventListener('DOMContentLoaded', async e => {
   await get_info();
-  $partes.value = 1;
-  numero_partes_pedido = $partes.value;
+  //extraer_data_empleados();
+  //extraer_data_rutas();
+  //$partes.value = 1;
+  //numero_partes_pedido = $partes.value;
 });

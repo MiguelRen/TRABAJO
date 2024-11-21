@@ -1,6 +1,6 @@
 <?php 
 
-            include "./views/modules/navegacion.php";
+            include "http://localhost/vitalclinic/views/modules/navegacion.php";
             ?>
     <div name="contenido">
         

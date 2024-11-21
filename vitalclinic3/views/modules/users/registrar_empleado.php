@@ -1,5 +1,5 @@
 <?php 
-    include "./controllers/control_privilegios.php";
+    include "controllers/control_privilegios.php";
     $privilegio = "registrar_empleado";
     $control_privilegios = new ControlPrivilegios();
     $acceso = $control_privilegios->verificar_privilegios($privilegio);
@@ -17,7 +17,15 @@
             <div class="bg-blue-500 border-2 border-white py-2 rounded-md w-full">
                 <h1 class="text-2xl font-bold text-white text-center">REGISTRAR NUEVO EMPLEADO</h1>
             </div>
+            <div class="w-52 h-52 ">
+            <img src="views/images/logo.png" alt="logo-vitalclinic">
+            </div>
+            <span 
+            id="error-login"
+            class="w-full bg-white border-2 border-red-400 py-3 px-4 mb-2 text-red-500 rounded-sm text-center hidden"
+            >
             
+            </span>
             <div class="w-full h-fit">
                 <form class="flex flex-col items-center py-4 h-fit border-2 border-gray-200 rounded-md bg-blue-500">
 
@@ -64,8 +72,8 @@
     </div>
 </div> 
 
-<script src="http://192.168.0.164/vitalclinic/views/assets/js/api.js"></script>
-<script src="http://192.168.0.164/vitalclinic/views/assets/js/registrar_empleado.js" type="module"></script>
+<script src="http://localhost/vitalclinic3/views/assets/js/api.js" type="module"></script>
+<script src="http://localhost/vitalclinic3/views/assets/js/registrar_empleado.js" type="module"></script>
 
 
 

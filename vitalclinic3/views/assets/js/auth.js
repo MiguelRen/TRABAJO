@@ -1,7 +1,4 @@
 import app from './api.js';
-// import {url} from "./server_url.js"
-// console.log(url);
-
 const d = document;
 
 const mostrar_error_login = () => {
@@ -10,7 +7,7 @@ const mostrar_error_login = () => {
 
 const login = async(form_data) => {
     try {
-        const data = await app(`localhost/vitalclinic3/controllers/auth.php?auth=1`,'POST',form_data);
+        const data = await app('http://localhost/vitalclinic3/controllers/auth.php?auth=1','POST',form_data);
         if(data.length > 0){
             //Redirigimos al inicio 
             window.location = "inicio"
@@ -23,7 +20,7 @@ const login = async(form_data) => {
     }
 }
 
-d.addEventListener('submit', async e => {
+d.addEventListener('submit', e => {
     e.preventDefault();
 
     const username = e.target.username.value;
@@ -33,5 +30,5 @@ d.addEventListener('submit', async e => {
     formdata.append('username', username);
     formdata.append('password', password);
 
-    await login(formdata);  
+    login(formdata);
 });

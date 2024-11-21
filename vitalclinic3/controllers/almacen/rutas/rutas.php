@@ -1,12 +1,6 @@
 <?php
     include "../../../models/almacen/rutas/rutas.php";
-	// Habilitar CORS solo para solicitudes desde http://webvital
-//     header("Access-Control-Allow-Origin: http://webvital");
-     // Permitir solo solicitudes POST y GET
-  //   header("Access-Control-Allow-Methods: POST, GET,PUT,DELETE");
-     // Permitir ciertos encabezados
-    // header("Access-Control-Allow-Headers: Content-Type");
-     //Recibir las urls y decidir que accion ejecutar
+
     class RutasController{
 
         public function registrar_ruta($ruta=""){

@@ -6,7 +6,7 @@
         private $conn;
 
         public function __construct(){
-           $this->conn = self::getInstance()->getConnection();
+            $this->conn = self::getInstance()->getConnection();
         }
 
         public function verificar_num_pedido($num_pedido){
@@ -64,13 +64,14 @@
         }
         
         public function registrar_pedido($cod_pedido="",$despachadores = [],$ruta="",$cant_unidades="") {
-            
+
 
             $id_pedido = $this->verificar_num_pedido($cod_pedido);
 
             if(count($id_pedido) > 0){
                 return [false,"Pedido ya se encuentra registrado"]; 
             }
+
             session_start();
             $user = $_SESSION['user']['id_account'];
 

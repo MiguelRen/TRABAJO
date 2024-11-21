@@ -76,5 +76,5 @@
     </div>
 </div>
 
-<script src="./views/assets/js/api.js"></script>
+<script src="./views/assets/js/api.js" type="module"></script>
 <script src="./views/assets/js/almacen/registrar_pedido.js" type="module"></script>
